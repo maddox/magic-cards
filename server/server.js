@@ -1,3 +1,4 @@
+const exec = require('child_process').exec
 const express = require('express')
 const path = require('path')
 const ejs = require('ejs')
@@ -19,6 +20,15 @@ app.get('/card/:id', (req, res) => {
   ejs.renderFile('card.ejs', card, {}, (err, str) => {
     res.send(str)
   })
+})
+
+app.post('/test/:code', (req, res) => {
+  const command = `node ${__dirname}/../scanner/testCard.js ${req.params.code}`
+  exec(command, function(error, stdout, stderr) {
+    console.log(stdout, stderr, error)
+  })
+
+  res.send('ok')
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}`))

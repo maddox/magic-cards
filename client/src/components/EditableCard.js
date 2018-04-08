@@ -57,13 +57,27 @@ class EditableCard extends React.Component {
     })
   }
 
+  testCard = event => {
+    event.preventDefault()
+    event.stopPropagation()
+
+    const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : '/'
+    const testerURL = baseURL + '/test/' + this.props.card.code
+
+    fetch(testerURL, {method: 'post'})
+  }
+
   render() {
     const {card} = this.props
 
     return (
       <div>
         <div className="EditableCard" onClick={this.handleClick}>
-          <Card card={card} handleBadgeClick={this.deleteCard} />
+          <Card
+            card={card}
+            handleLeftBadgeClick={this.testCard}
+            handleRightBadgeClick={this.deleteCard}
+          />
           <Modal
             open={this.state.showModal}
             onClose={this.handleRequestClose}

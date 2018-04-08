@@ -6,12 +6,20 @@ import '../styles/Card.css'
 
 class Card extends React.Component {
   render() {
-    const {card, handleBadgeClick} = this.props
-    let badge
+    const {card, handleLeftBadgeClick, handleRightBadgeClick} = this.props
+    let leftBadge, rightBadge
 
-    if (handleBadgeClick) {
-      badge = (
-        <div className="badge" onClick={handleBadgeClick}>
+    if (handleLeftBadgeClick) {
+      leftBadge = (
+        <div className="badge left" onClick={handleLeftBadgeClick} title="Test card">
+          <Icon name="play circle" />
+        </div>
+      )
+    }
+
+    if (handleRightBadgeClick) {
+      rightBadge = (
+        <div className="badge right" onClick={handleRightBadgeClick} title="Delete card">
           <Icon name="trash outline" />
         </div>
       )
@@ -19,7 +27,8 @@ class Card extends React.Component {
 
     return (
       <div className={`Card ${card.type}`}>
-        {badge}
+        {leftBadge}
+        {rightBadge}
         <div className="card-content">
           {validUrl.isUri(card.artURL) && (
             <img className="coverArt" src={card.artURL} alt="cover art" />
