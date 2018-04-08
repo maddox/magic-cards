@@ -4,6 +4,7 @@ const fs = require('fs')
 
 const SonosAction = require('./actions/SonosAction')
 const HomeAssistantAction = require('./actions/HomeAssistantAction')
+const ChannelsAction = require('./actions/ChannelsAction')
 const ScriptAction = require('./actions/ScriptAction')
 
 const keys = 'X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXXXX'
@@ -31,15 +32,20 @@ function processCard(card) {
 
   console.log(`Processing action: ${card.action}`)
 
+  let actionProcessor
+
   if (action.type === 'sonos') {
-    const sonos = new SonosAction(card, action)
-    sonos.process()
+    actionProcessor = new SonosAction(card, action)
   } else if (action.type === 'home_assistant') {
-    const hass = new HomeAssistantAction(card, action)
-    hass.process()
+    actionProcessor = new HomeAssistantAction(card, action)
+  } else if (action.type === 'channels') {
+    actionProcessor = new ChannelsAction(card, action)
   } else if (action.type === 'script') {
-    const script = new ScriptAction(card, action)
-    script.process()
+    actionProcessor = new ScriptAction(card, action)
+  }
+
+  if (actionProcessor) {
+    actionProcessor.process()
   }
 }
 
