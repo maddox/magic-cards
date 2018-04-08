@@ -1,7 +1,6 @@
 const express = require('express')
 const path = require('path')
 const ejs = require('ejs')
-const pdf = require('html-pdf')
 
 const graphQLAPI = require('./lib/graphql')
 
@@ -19,18 +18,6 @@ app.get('/card/:id', (req, res) => {
   const card = findCard(req.params.id)
   ejs.renderFile('card.ejs', card, {}, (err, str) => {
     res.send(str)
-  })
-})
-
-app.get('/card/:id/pdf', (req, res) => {
-  const card = findCard(req.params.id)
-  ejs.renderFile('card.ejs', card, {}, (err, str) => {
-    let options = {format: 'Letter'}
-
-    pdf.create(str, options).toStream((err, stream) => {
-      if (err) return console.log(err)
-      stream.pipe(res)
-    })
   })
 })
 
