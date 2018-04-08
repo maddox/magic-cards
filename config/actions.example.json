@@ -25,5 +25,9 @@
     "port": "8123",
     "ssl": false,
     "password": "hapassword"
+  },
+  "My Script": {
+    "type": "script",
+    "filename": "test.sh"
   }
 }
