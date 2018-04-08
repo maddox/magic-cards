@@ -26,6 +26,11 @@
     "ssl": false,
     "password": "hapassword"
   },
+  "Family Room Channels": {
+    "type": "channels",
+    "host": "192.168.1.120",
+    "port": "57000"
+  },
   "My Script": {
     "type": "script",
     "filename": "test.sh"

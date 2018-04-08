@@ -192,7 +192,7 @@ class CardEditor extends React.Component {
       }
     }
 
-    const types = ['Album', 'Song', 'Playlist', 'Station', 'Movie', 'Show', 'Event']
+    const types = ['Album', 'Song', 'Playlist', 'Station', 'Movie', 'Show', 'Channel', 'Event']
     const typeOptions = types.map(type => {
       return {text: type, value: type.toLowerCase()}
     })
