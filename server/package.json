@@ -9,8 +9,7 @@
     "ejs": "^2.5.8",
     "express": "^4.16.2",
     "express-graphql": "^0.6.12",
-    "graphql": "^0.13.2",
-    "html-pdf": "^2.2.0"
+    "graphql": "^0.13.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
