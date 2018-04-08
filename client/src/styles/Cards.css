@@ -3,7 +3,7 @@
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
 
-  padding: 20px 50px;
+  padding: 100px 50px;
 
   justify-content: center;
 }
