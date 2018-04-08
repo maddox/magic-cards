@@ -39,7 +39,7 @@ class App extends Component {
 
     return (
       <div className="container">
-        <Menu icon="labeled">
+        <Menu fixed="top" icon="labeled">
           <Menu.Item>
             <Icon name="magic" />
             <p>Magic Cards</p>
