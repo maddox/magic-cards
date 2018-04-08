@@ -8,17 +8,17 @@ cd "$(dirname "$0")/.."
 
 echo "Installing dependencies..."
 
-yarn --silent
+yarn
 
 cd server
-yarn --silent
+yarn
 
 cd ..
 
 cd client
-yarn --silent
+yarn
 
 cd ..
 
 cd scanner
-yarn --silent
+yarn
