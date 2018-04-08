@@ -4,4 +4,13 @@
   grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
 
   padding: 20px 50px;
+
+  justify-content: center;
+}
+
+
+@media screen and (max-width: 767px) {
+  .Cards{
+    grid-template-columns: repeat(auto-fill, 175px);
+  }
 }
