@@ -11,7 +11,7 @@ class Card extends React.Component {
 
     if (handleBadgeClick) {
       badge = (
-        <div className="badge" onClick={handleBadgeClick}>
+        <div className="badge" onClick={handleBadgeClick} title="Delete card">
           <Icon name="trash outline" />
         </div>
       )
