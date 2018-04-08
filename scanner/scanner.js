@@ -9,7 +9,6 @@ const ScriptAction = require('./actions/ScriptAction')
 
 const keys = 'X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXXXX'
 const input = new InputEvent('/dev/input/event0')
-
 const keyboard = new InputEvent.Keyboard(input)
 
 function findCard(code) {
