@@ -4,6 +4,7 @@ const fs = require('fs')
 
 const SonosAction = require('./actions/SonosAction')
 const HomeAssistantAction = require('./actions/HomeAssistantAction')
+const ScriptAction = require('./actions/ScriptAction')
 
 const actions = require(__dirname + '/../config/actions.json')
 
@@ -36,6 +37,9 @@ function processCard(card) {
   } else if (action.type === 'home_assistant') {
     const hass = new HomeAssistantAction(card, action)
     hass.process()
+  } else if (action.type === 'script') {
+    const script = new ScriptAction(card, action)
+    script.process()
   }
 }
 
