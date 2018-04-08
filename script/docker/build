@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# script/docker/build: Build docker container
+
+set -e
+
+cd "$(dirname "$0")/../.."
+
+docker build -t magic-cards .
