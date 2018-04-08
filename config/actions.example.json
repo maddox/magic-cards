@@ -1,0 +1,29 @@
+{
+  "Sonos": {
+    "type": "sonos",
+    "host": "192.168.1.50",
+    "port": "5005",
+    "username": "myname",
+    "password": "mypassword",
+    "room": "Living Room",
+    "playlist": {
+      "shuffle": "on",
+      "repeat": "all"
+    },
+    "album": {
+      "shuffle": "off",
+      "repeat": "all"
+    },
+    "song": {
+      "shuffle": "off",
+      "repeat": "all"
+    }
+  },
+  "Home Assistant": {
+    "type": "home_assistant",
+    "host": "192.168.1.50",
+    "port": "8123",
+    "ssl": false,
+    "password": "hapassword"
+  }
+}

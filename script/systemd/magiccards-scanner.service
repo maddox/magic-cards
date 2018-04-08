@@ -1,0 +1,15 @@
+[Unit]
+Description=MagicCards-Scanner
+After=network.target
+
+[Service]
+Environment=NODE_ENV=production
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/magic-cards
+ExecStart=/usr/local/bin/node /home/pi/magic-cards/scanner/scanner.js
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# script/upgrade: Upgrade and restart
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "Upgrading Magic Cards..."
+
+git pull > /dev/null 2>&1
+script/setup
+script/restart

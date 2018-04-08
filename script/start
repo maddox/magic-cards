@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# script/start: Start systemd services
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "Starting Magic Cards..."
+
+sudo systemctl start magiccards-server.service
+sudo systemctl start magiccards-scanner.service
+
+echo "Magic Cards has been started."

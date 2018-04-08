@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# script/stop: Stop systemd services
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "Stopping Magic Cards..."
+
+sudo systemctl stop magiccards-server.service
+sudo systemctl stop magiccards-scanner.service
+
+echo "Magic Cards has been stopped."

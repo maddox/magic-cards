@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# script/stack: Launch all the services
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "Starting Magic Cards..."
+
+yarn --silent stack
+
+echo "Magic Cards has been started."

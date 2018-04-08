@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# script/dev/stack: Launch the client & server applications to run for development
+
+set -e
+
+cd "$(dirname "$0")/../.."
+
+script/bootstrap
+yarn dev-stack

@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# script/bootstrap: Set up project dependencies
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "Installing dependencies..."
+
+yarn --silent
+
+cd server
+yarn --silent
+
+cd ..
+
+cd client
+yarn --silent
+
+cd ..
+
+cd scanner
+yarn --silent

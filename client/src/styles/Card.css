@@ -1,0 +1,84 @@
+.Card{
+  position: relative;
+  /* ratio: 1.586 */
+  height: 264px;
+  width: 168px;
+
+  border-radius: 8px;
+  overflow: hidden;
+
+  text-align: center;
+  background-color: #ffffff;
+
+  .badge{
+    position: absolute;
+    display: none;
+    right: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding-top: 0;
+    border-style: solid;
+    border-width: 0 40px 40px 0;
+    border-color: transparent #c20e00 transparent transparent;
+
+    i.icon{
+      padding: 2px 0 0 22px;
+      font-size: 16px;
+      color: #f0f1f4;
+    }
+
+    &:hover i.icon{
+      color: #e5bbaf;
+    }
+
+  }
+
+  &:hover .badge{
+    display: block;
+  }
+
+  &.movie .coverArt, &.show .coverArt{
+    height: 100%;
+  }
+
+
+  .card-content{
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
+
+    .coverArt{
+      width: 100%;
+    }
+
+    .metadata{
+      display: flex;
+      align-items: center;
+
+      .titles{
+        width: 100%;
+
+        p{
+          padding: 0 10px;
+          margin: 0;
+          width: 100%;
+
+          &.title{
+            font-size: 16px;
+            font-weight: 500;
+          }
+
+          &.subtitle{
+            margin-top: 5px;
+            font-size: 13px;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
+
+
+}

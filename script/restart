@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# script/restart: Restart systemd services
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "Restarting Magic Cards..."
+
+sudo systemctl restart magiccards-server.service
+sudo systemctl restart magiccards-scanner.service
+
+echo "Magic Cards is starting back up."

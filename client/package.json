@@ -1,0 +1,38 @@
+{
+  "name": "magic-cards-client",
+  "author": "Jon Maddox <jon@jonmaddox.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "lint": "./node_modules/.bin/eslint --ext .js src",
+    "prettier": "./node_modules/.bin/eslint --fix --ext .js src",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.1.12",
+    "apollo-client": "^2.2.8",
+    "apollo-link-http": "^1.5.3",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.8.0",
+    "itunes": "^0.0.6",
+    "postcss-nested": "^3.0.0",
+    "react": "^16.2.0",
+    "react-apollo": "^2.1.1",
+    "react-app-rewired": "^1.5.0",
+    "react-dom": "^16.2.0",
+    "react-modal": "^3.3.2",
+    "react-scripts": "1.1.1",
+    "semantic-ui-css": "2.2.14",
+    "semantic-ui-react": "^0.79.1",
+    "title-case": "^2.1.1",
+    "valid-url": "^1.0.9"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "prettier": "^1.11.1"
+  },
+  "proxy": "http://localhost:5000/"
+}

@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# script/build: Build client app to run from server in production
+
+set -e
+
+echo "Building Magic Cards..."
+
+cd "$(dirname "$0")/.."
+
+rm -Rf client/build
+cd client && yarn --silent build  > /dev/null 2>&1
+cd ..
+
+rm -Rf server/public
+mkdir -p server/public
+
+cp -a client/build/. server/public/

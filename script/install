@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# script/install: Set up to run with systemd
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "Setting up Magic Cards to run on boot..."
+sudo cp script/systemd/magiccards-server.service /etc/systemd/system/magiccards-server.service
+sudo systemctl daemon-reload
+
+sudo cp script/systemd/magiccards-scanner.service /etc/systemd/system/magiccards-scanner.service
+sudo systemctl daemon-reload
+
+echo "Starting Magic Cards..."
+
+sudo systemctl start magiccards-server.service
+sudo systemctl start magiccards-scanner.service
+
+sudo systemctl enable magiccards-server.service > /dev/null 2>&1
+sudo systemctl enable magiccards-scanner.service > /dev/null 2>&1
+
+echo "Magic Cards has been started."

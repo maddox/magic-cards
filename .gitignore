@@ -1,0 +1,14 @@
+npm-debug.log*
+/build
+.vscode
+.sass-cache
+.env
+node_modules/
+/src/styles/css/*
+yarn-error.log
+.env.*
+.s3cfg
+.jshintrc
+
+config/cards.json
+config/actions.json
