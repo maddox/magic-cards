@@ -61,7 +61,7 @@ class EditableCard extends React.Component {
     event.preventDefault()
     event.stopPropagation()
 
-    const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : '/'
+    const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : ''
     const testerURL = baseURL + '/test/' + this.props.card.code
 
     fetch(testerURL, {method: 'post'})
