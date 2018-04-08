@@ -33,6 +33,20 @@
       color: #e5bbaf;
     }
 
+    &.left{
+      left: 0;
+      border-width: 0 0 40px 40px;
+      border-color: transparent transparent transparent #1b43b1;
+      i.icon{
+        margin-left: -50px;
+        padding: 2px 0 0 0;
+      }
+
+      &:hover i.icon{
+        color: #c8dbff;
+      }
+
+    }
   }
 
   &:hover .badge{
