@@ -15,8 +15,8 @@
     "stack": "concurrently --kill-others-on-fail \"yarn server\" \"yarn scanner\""
   },
   "dependencies": {
-    "concurrently": "^3.5.0"
   },
   "devDependencies": {
+    "concurrently": "^3.5.0"
   }
 }
