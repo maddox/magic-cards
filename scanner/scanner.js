@@ -6,8 +6,6 @@ const SonosAction = require('./actions/SonosAction')
 const HomeAssistantAction = require('./actions/HomeAssistantAction')
 const ScriptAction = require('./actions/ScriptAction')
 
-const actions = require(__dirname + '/../config/actions.json')
-
 const keys = 'X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXXXX'
 const input = new InputEvent('/dev/input/event0')
 
@@ -22,6 +20,8 @@ function findCard(code) {
 }
 
 function processCard(card) {
+  const actionData = fs.readFileSync(__dirname + '/../config/actions.json').toString()
+  const actions = JSON.parse(actionData)
   let action = actions[card.action]
 
   if (!action) {
