@@ -1,5 +1,8 @@
 ## Magic Cards
 
+### Script actions
+
+You need to put the script in the `/config` directory and `chmod +x` it.
 
 ### Home Assistant
 
