@@ -1,8 +1,8 @@
 
 
-<center>
+<div style="text-align: center">
 <img src="/docs/images/logo.png" width="300px">
-</center>
+</div>
 
 ### Script actions
 
