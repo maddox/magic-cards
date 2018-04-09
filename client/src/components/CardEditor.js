@@ -1,7 +1,6 @@
 import React from 'react'
 import gql from 'graphql-tag'
 import {graphql, compose} from 'react-apollo'
-import titleCase from 'title-case'
 import validUrl from 'valid-url'
 
 import {Form, Button} from 'semantic-ui-react'

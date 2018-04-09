@@ -3,7 +3,6 @@ import titleCase from 'title-case'
 export default class Metadata {
   static async fromItunes(sourceURL) {
     let type, title, subtitle, uri, artURL
-    let data = {}
 
     if (sourceURL.pathname.includes('/album/')) {
       const collectionID = sourceURL.pathname.split('/').pop()
