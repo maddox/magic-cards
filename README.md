@@ -68,6 +68,10 @@ Find a bug, or want to add a new action? Contributions are very welcomed!
 * Create a feature branch
 * Open a Pull Request
 
+## Attributions
+
+None of this would exist without @fsahli and @hoveeman's [music-card](https://github.com/hoveeman/music-cards) project. @hoveeman's [YouTube video](https://www.youtube.com/watch?v=AvCseOQidSw) inspired all of this. Thanks @hoveeman!
+
 
 ## To Dos
 
