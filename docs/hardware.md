@@ -25,7 +25,7 @@ If you're using a Raspberry Pi Zero, you'll need to get an [OTG USB cable](https
 
 ## Programming the Reader
 
-One little gotcha is that your RFID reader will be delivered in an incompatible mode. You're going to need to reprogram it to output in a different format.
+One little gotcha is that your RFID card reader will be delivered in an incompatible mode. You're going to need to reprogram it to output in a different format.
 
 You will need a Windows computer to do this and VMWare or Parallels won't work, because they see the reader as a normal keyboard and not a programmable USB device. (Open an issue if you do get this to work somehow.)
 
@@ -33,7 +33,7 @@ You'll need to download [this software](https://www.dropbox.com/s/ena4ukh9wewhj9
 
 ![](/docs/images/card-programmer.png)
 
-It takes about 1 second to do it. Once you've done this, it's good to go forever.
+Click `Set` to write the config to the card reader. It takes about 1 second to do it. Once you've done this, it's good to go forever.
 
 
 ## Cards & Printing
