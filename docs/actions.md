@@ -128,17 +128,18 @@ Heres an example automation that is only triggered if the type of card is an `al
 In this example, the URI of the card sent is: `office_music|Maddox Music`
 
 ```yaml
-- alias: Play favorite from Magic Cards
-  trigger:
-    - platform: event
-      event_type: magic_card_scanned
-      event_data:
-        type: album
-  action:
-    - service: media_player.select_source
-      data_template:
-        entity_id: "media_player.{{ trigger.event.data.uri.split('|')[0] }}"
-        source: "{{ trigger.event.data.uri.split('|')[1] }}"
+automation:
+  - alias: Play favorite from Magic Cards
+    trigger:
+      - platform: event
+        event_type: magic_card_scanned
+        event_data:
+          type: album
+    action:
+      - service: media_player.select_source
+        data_template:
+          entity_id: "media_player.{{ trigger.event.data.uri.split('|')[0] }}"
+          source: "{{ trigger.event.data.uri.split('|')[1] }}"
 ```
 
 When triggered, the automation reads from the URI property and uses the first part to set the entity id of the media player that will be used. It uses the second part as the name of the source that should be played.
