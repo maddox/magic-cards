@@ -7,19 +7,17 @@ export default class Metadata {
     const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : ''
     const pathParts = sourceURL.pathname.split('/')
 
-    console.log(pathParts)
     const spotifyID = pathParts[pathParts.length - 1]
     const contentType = pathParts[pathParts.length - 2]
     const user = pathParts[pathParts.length - 3]
 
     const metadataURL = `${baseURL}/metadata/spotify?type=${contentType}&uri=${spotifyID}&user=${user}`
-    console.log(metadataURL)
+
     let metadata = await fetch(metadataURL)
       .then(results => {
         return results.json()
       })
       .then(data => {
-        console.log(data)
         type = contentType
         title = data.name
         uri = data.uri
