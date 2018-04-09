@@ -28,6 +28,8 @@ All cards have these properties:
 
 If you're creating cards for Apple Music or Spotify, you can simply paste the url in the field at the top of the form. Magic Cards will read it and automatically populate the card with the data it needs.
 
+\*Quick filling with Spotify URLs requires you to set it up appropriatly. Learn how to do that in the [configuration documentation](/docs/install.md#configjson)
+
 
 ### Content Type
 
