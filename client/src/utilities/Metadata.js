@@ -30,7 +30,7 @@ export default class Metadata {
       .then(data => {
         type = contentType
         title = data.name
-        uri = data.uri
+        uri = `spotify/next/${data.uri}`
 
         if (data.artists && data.artists[0]) {
           subtitle = data.artists[0].name
