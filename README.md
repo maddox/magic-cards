@@ -3,7 +3,6 @@
 </div>
 
 <br>
-:construction::construction::construction: Magic Cards is in a pre-release state as I work on getting things working well in things like Docker. It's not suggested to be used at this time. :construction::construction::construction:
 
 Magic Cards merges the physical world with the digital world. It lets you create RFID scannable cards that you can program to do anything.
 
@@ -11,6 +10,11 @@ Magic Cards merges the physical world with the digital world. It lets you create
 * Play a movie
 * Tune to a TV channel
 * Unlock your back door
+
+## Not Ready for Prime Time
+
+:construction::construction::construction: Magic Cards is in a pre-release state as I work on getting things working well in things like Docker. It's not suggested to be used at this time. :construction::construction::construction:
+
 
 ## How does it work?
 
