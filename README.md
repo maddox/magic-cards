@@ -1,4 +1,8 @@
-## Magic Cards
+
+
+<center>
+<img src="/docs/images/logo.png" width="300px">
+</center>
 
 ### Script actions
 
