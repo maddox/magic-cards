@@ -1,4 +1,5 @@
 {
+  "input_device": "event0",
   "spotify": {
     "clientID": "XXX",
     "clientSecret": "XXX"
