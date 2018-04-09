@@ -56,6 +56,8 @@ And for the little ones, this gives them a real way to put music on themselves.
 
 Magic Cards lets you marry what's great about physical media with what's great about digital media.
 
+![](/docs/images/cards-fanned.jpg)
+
 ## Setup
 
 You can find more information about installation and how to use Magic Cards in the [documentation](/docs).
