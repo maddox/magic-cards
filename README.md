@@ -24,7 +24,7 @@ While this is still very much a DIY project, the hopes of Magic Cards is that it
 
 ## What can it do?
 
-Magic Cards lets you program cards to start music on Sonos, trigger an event on Home Assistant, change channels or start a recording with Channels, or run your own specific script.
+Magic Cards lets you program cards to start music on [Sonos](https://sonos.com), trigger an event on [Home Assistant](https://home-assistant.io), change a channel or play a recording with [Channels](https://getchannels.com), or run your own specific script.
 
 This isn't all. Magic Cards makes it easy to add more actionable platforms for the future. Pull Requests welcome!
 
