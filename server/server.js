@@ -2,7 +2,15 @@ const exec = require('child_process').exec
 const express = require('express')
 const path = require('path')
 const ejs = require('ejs')
+const SpotifyWebApi = require('spotify-web-api-node')
+
 const config = require(__dirname + '/../config/config.json')
+
+// Create the api object with the credentials
+var spotifyApi = new SpotifyWebApi({
+  clientId: config.spotify.clientID,
+  clientSecret: config.spotify.clientSecret,
+})
 
 const graphQLAPI = require('./lib/graphql')
 
