@@ -4,7 +4,7 @@
 
 <br>
 
-Magic Cards merges the physical world with the digital world. It lets you create RFID scannable cards that you can program to do anything with.
+Magic Cards merges the physical world with the digital world. It lets you create RFID scannable cards that you can program to do anything.
 
 * Start playing music
 * Play a movie
