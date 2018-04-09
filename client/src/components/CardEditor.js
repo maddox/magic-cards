@@ -6,6 +6,7 @@ import validUrl from 'valid-url'
 
 import {Form, Button} from 'semantic-ui-react'
 
+import Metadata from '../utilities/Metadata'
 import Card from './Card'
 
 import '../styles/CardEditor.css'
@@ -50,56 +51,15 @@ class CardEditor extends React.Component {
       return anAction.name === this.state.action
     })
 
-    let type, title, subtitle, uri, artURL
-
     const sourceURL = new URL(event.target.value)
 
     if (sourceURL.host === 'itunes.apple.com') {
-      if (sourceURL.pathname.includes('/album/')) {
-        const collectionID = sourceURL.pathname.split('/').pop()
-        const fragmentID = sourceURL.searchParams.get('i')
-        const itunesID = fragmentID || collectionID
-
-        fetch(`https://itunes.apple.com/lookup?id=${itunesID}`)
-          .then(results => {
-            return results.json()
-          })
-          .then(data => {
-            const result = data.results[0]
-
-            artURL = result.artworkUrl100.replace('100x100bb.jpg', '1400x1400bb.jpg')
-
-            if (result.kind === 'song') {
-              type = 'song'
-              title = result.trackName
-              subtitle = result.artistName
-            } else if (result.collectionType === 'Album') {
-              type = 'album'
-              title = result.collectionName
-              subtitle = result.artistName
-            }
-
-            if (action.type === 'sonos') {
-              uri = `applemusic/next/${type}:${itunesID}`
-            }
-
-            this.setState({type: type, artURL: artURL, title: title, subtitle: subtitle, uri: uri})
-          })
-      } else {
-        if (sourceURL.pathname.includes('/playlist/')) {
-          type = 'playlist'
-          title = titleCase(sourceURL.pathname.split('/')[3].replace('-', ' '))
-          subtitle = 'Apple Music'
-          artURL = ''
-        } else if (sourceURL.pathname.includes('/station/')) {
-          type = 'station'
-          title = titleCase(sourceURL.pathname.split('/')[3].replace('-', ' '))
-          subtitle = 'Apple Music'
-          artURL = ''
+      Metadata.fromItunes(sourceURL).then(metadata => {
+        if (action.type !== 'sonos') {
+          delete metadata.uri
         }
-
-        this.setState({type: type, artURL: artURL, title: title, subtitle: subtitle})
-      }
+        this.setState(metadata)
+      })
     }
   }
 
