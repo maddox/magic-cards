@@ -17,6 +17,8 @@ RFID cards each have a unique ID. These cards are cheap, inkjet printable, and t
 
 Magic Cards runs on a simple Raspberry Pi Zero with an RFID scanner plugged in. It gives you a full management console to create and manage all of your cards. It listens in the background for a card scan and when it sees one, it looks up that card and processes the action you defined for it.
 
+While this is still very much a DIY project, the hopes of Magic Cards is that it makes it much more manageable and fun!
+
 
 ![](/docs/images/cards-shot.png)
 
