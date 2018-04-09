@@ -2,6 +2,7 @@ const exec = require('child_process').exec
 const express = require('express')
 const path = require('path')
 const ejs = require('ejs')
+const config = require(__dirname + '/../config/config.json')
 
 const graphQLAPI = require('./lib/graphql')
 
