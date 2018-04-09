@@ -5,7 +5,7 @@ Actions. This is where the magic happens. Magic Card has core actions that proce
 Combined with those, and your configured actions, you can tell your cards exactly what to do.
 
 * [Background](#background)
-* [actions.json](#actions-json)
+* [actions.json](#actionsjson)
 * [Sonos](#sonos)
 * [Home Assistant](#home-assistant)
 * [Channels](#channels)
