@@ -40,4 +40,51 @@ app.post('/test/:code', (req, res) => {
   res.send('ok')
 })
 
+app.get('/metadata/spotify', (req, res) => {
+  const type = req.query.type
+  const uri = req.query.uri
+  const user = req.query.user
+
+  const responder = data => {
+    console.log(data)
+    res.send(data.body)
+  }
+  const errorHandler = error => {
+    console.error(error)
+    res.send({message: 'error'})
+  }
+
+  spotifyApi
+    .clientCredentialsGrant()
+    .then(data => {
+      spotifyApi.setAccessToken(data.body.access_token)
+
+      switch (type) {
+        case 'album':
+          spotifyApi
+            .getAlbum(uri)
+            .then(responder)
+            .catch(errorHandler)
+          break
+        case 'track':
+          spotifyApi
+            .getTrack(uri)
+            .then(responder)
+            .catch(errorHandler)
+          break
+        case 'playlist':
+          spotifyApi
+            .getPlaylist(user, uri)
+            .then(responder)
+            .catch(errorHandler)
+          break
+        default:
+      }
+    })
+    .catch(error => {
+      console.log('Something went wrong when retrieving an access token', error)
+      res.send('error')
+    })
+})
+
 app.listen(port, () => console.log(`Listening on port ${port}`))
