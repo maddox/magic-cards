@@ -117,7 +117,7 @@ The Home Assistant action simply pushes the event `magic_card_scanned`. All you 
 
 ### Card URI
 
-When you're creating Home Assistant cards, you can hand serialized data to your automations with the card's URI property.
+When you're creating Home Assistant cards, you can send serialized data to your automations with the card's URI property.
 
 Your automation can use this information in the way it needs, to do the thing it needs to do.
 
