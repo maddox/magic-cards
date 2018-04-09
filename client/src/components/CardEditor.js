@@ -59,6 +59,13 @@ class CardEditor extends React.Component {
         }
         this.setState(metadata)
       })
+    } else if (sourceURL.host === 'open.spotify.com') {
+      Metadata.fromSpotify(sourceURL).then(metadata => {
+        if (action.type !== 'sonos') {
+          delete metadata.uri
+        }
+        this.setState(metadata)
+      })
     }
   }
 
