@@ -50,7 +50,7 @@ Action defines what the card should do when it gets scanned. Magic Cards lets yo
 
 You can learn more about Actions in the [Actions documentation](actions.md).
 
-### Title & Subtitle & Art URL
+### Title, Subtitle, and Art URL
 
 These should be obvious. If you leave off a subtitle, it won't show. Art URL is the url for the cover art that you want on the card.
 
