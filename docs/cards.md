@@ -5,6 +5,7 @@ The core to all of Magic Cards is...the cards! Read below to learn how to create
 * [Creating Cards](#creating-cards)
 * [Managing Cards](#managing-cards)
 * [Testing Cards](#testing-cards)
+* [Printing Cards](#printing-cards)
 
 
 ## Creating Cards
@@ -76,3 +77,9 @@ If you want to delete the card, you can click the delete button badged on the to
 After creating a card, you can simply test it by clicking the play button badged on the top left of the card that shows up after hovering over it.
 
 This makes it real easy to make sure the card will do what it's supposed to when scanned.
+
+## Printing Cards
+
+Magic Cards doesn't have the ability to print cards directly. But the company that sells the inkjet cards has some [great guides and tutorials on doing it](https://brainstormidsupply.com/guides-videos-tutorials/).
+
+They provide [lots of templates](https://brainstormidsupply.com/learning-center/inkjet-pvc-cards-help.html) for different printer configurations and even [a nice PDF generator](https://brainstormidsupply.com/id-card-printing-layout-tool.html) that you can just add card images to and get a ready to print document.
