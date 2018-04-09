@@ -6,9 +6,9 @@ Magic Cards was designed to run on a Raspberry Pi Zero with a simple RFID scanne
 
 Here's what you need to get started.
 
-* [Raspberry Pi + RFID Reader](#)
-* [Cards & Printing](#)
+* [Raspberry Pi + RFID Reader](#raspberry-pi--rfid-reader)
 * [Programming the Reader](#programming-the-reader)
+* [Cards & Printing](#cards--printing)
 
 ## Raspberry Pi + RFID Reader
 
