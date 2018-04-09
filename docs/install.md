@@ -8,7 +8,7 @@ Magic Cards will only run on Linux due to how it listens for input from the card
 * [Install](#install)
 * [Configure](#configure)
 * [Start it up](#start)
-* [Stop & Restart](#stop-restart)
+* [Stop & Restart](#stop--restart)
 * [Upgrade](#upgrade)
 
 ## Prerequisites
@@ -132,7 +132,7 @@ script/restart
 
 Protip: You don't have to restart Magic Cards if you edit your Actions configuration.
 
-## Upgrading
+## Upgrade
 
 If you ever need to upgrade Magic Cards, you can simply do it with:
 
