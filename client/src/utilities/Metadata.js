@@ -1,6 +1,16 @@
 import titleCase from 'title-case'
 
 export default class Metadata {
+  static async fetchMetadata(url) {
+    const sourceURL = new URL(url)
+
+    if (sourceURL.host === 'itunes.apple.com') {
+      return Metadata.fromItunes(sourceURL)
+    } else if (sourceURL.host === 'open.spotify.com') {
+      return Metadata.fromSpotify(sourceURL)
+    }
+  }
+
   static async fromSpotify(sourceURL) {
     let type, title, subtitle, uri, artURL
 

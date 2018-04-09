@@ -50,23 +50,14 @@ class CardEditor extends React.Component {
       return anAction.name === this.state.action
     })
 
-    const sourceURL = new URL(event.target.value)
+    const url = event.target.value
 
-    if (sourceURL.host === 'itunes.apple.com') {
-      Metadata.fromItunes(sourceURL).then(metadata => {
-        if (action.type !== 'sonos') {
-          delete metadata.uri
-        }
-        this.setState(metadata)
-      })
-    } else if (sourceURL.host === 'open.spotify.com') {
-      Metadata.fromSpotify(sourceURL).then(metadata => {
-        if (action.type !== 'sonos') {
-          delete metadata.uri
-        }
-        this.setState(metadata)
-      })
-    }
+    Metadata.fetchMetadata(url).then(metadata => {
+      if (action.type !== 'sonos') {
+        delete metadata.uri
+      }
+      this.setState(metadata)
+    })
   }
 
   handleSubmit = event => {
