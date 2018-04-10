@@ -60,6 +60,8 @@ Magic Cards lets you marry what's great about physical media with what's great a
 
 ![](/docs/images/cards-fanned.jpg)
 
+<img src="https://media.giphy.com/media/1QetzenJpy1MxafAD3/giphy.gif" width="800px">
+
 ## Setup
 
 You can find more information about installation and how to use Magic Cards in the [documentation](/docs).
