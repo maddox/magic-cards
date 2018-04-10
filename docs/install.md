@@ -57,7 +57,9 @@ You should be all set up to get Magic Cards running now.
 
 ## Standalone or Docker
 
-Magic Cards can be run standalone or with a Docker container. The choice is yours. I highly suggest you just use Docker though. It means you don't have to do anything to get your environment right.
+Magic Cards can be run standalone on your Pi or with a Docker container. The choice is yours. I highly suggest you just use Docker though. It means you don't have to do anything to get your environment right.
+
+Protip: If you want to get up and running with Magic Cards and Sonos the fastest, you could use the [magic-cards-docker](https://github.com/maddox/magic-cards-docker). This is a repo that combines Magic Cards and the project that powers Sonos queueing all in one.
 
 ## Docker Install
 
