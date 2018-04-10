@@ -119,7 +119,9 @@ If you want to queue Spotify music, you'll need to get a `Client ID` and `Client
 
 If you have [Home Assistant](https://home-assistant.io) set up at home, integrating with it is super simple.
 
-The Home Assistant action simply pushes the event `magic_card_scanned`. All you have to do is set up an automation that uses that event as a trigger. Magic Cards delivers all of the card's properties when it pushes the events, so they're available to you in your automation.
+The Home Assistant action simply pushes the event `magic_card_scanned`. All you have to do is set up an automation that uses that event as a trigger.
+
+Magic Cards delivers all of the card's properties when it pushes the events, so they're available to you in your automation. Use `trigger.event.data` in your automation templates to get the data. Ex: `trigger.event.data.uri`, `trigger.event.data.title`.
 
 ### Card URI
 
@@ -212,3 +214,5 @@ Configuring a custom script action is as simple as providing the name of the fil
 ```
 
 All custom scripts need to be placed in the `/config` directory.
+
+When run, your script will receive all of the properties of your card as environment variables. You can use them like `$CARD_TITLE`, `$CARD_URI`, etc.
