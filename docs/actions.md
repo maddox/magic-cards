@@ -1,6 +1,6 @@
 # Actions!
 
-Actions. This is where the magic happens. Magic Card has core actions that process your card and do things.
+Actions. This is where the magic happens. Magic Cards has core actions that process your card and do things.
 
 Combined with those, and your configured actions, you can tell your cards exactly what to do.
 
@@ -66,15 +66,17 @@ Magic Cards comes with an example actions configuration in `/config/actions.exam
 }
 ```
 
-Explanation about each type can be found below. But what's most important right now is how they're defined. Each action has a name for a key, with it's configuration as a value. The name is what will show when you are managing your cards.
+Explanation about each type can be found below. But what's most important to understand is how they're defined. Each action has a name for a key, with it's configuration as a value. The name is what will show when you are managing your cards.
 
-The type value of the config tells Magic Cards what kind of Action it is. When processing the card scan, Magic Card hands the whole configuration of your action to the Action processor and uses all of it's values. So here is where you can configure exactly how the action will work.
+The `type` value of the config tells Magic Cards what kind of Action it is. When processing the card scan, Magic Card hands the whole configuration of your action to the Action processor and uses all of it's values. So, here is where you can configure exactly how the action will work.
 
 ## Sonos
 
-Sonos is probably the best whole home audio system you can get, if you're into any kind of automation like this. It's stable, and open enough that you can control it locally :metal:
+Sonos is probably the best whole home audio system you can get if you're into any kind of automation. It's stable, works great, and open enough that you can control it locally :metal:
 
 The Sonos action utilizes another open source project to talk to your Sonos and tell it what to play. In order to use the Sonos action, you'll have to have the [Sonos HTTP API](https://github.com/jishi/node-sonos-http-api) set up. If you have another home server you use for automation or what not, I'd suggest you just run it there. If you use Docker, it's as easy as starting up [this container](https://hub.docker.com/r/chrisns/docker-node-sonos-http-api/).
+
+**Protip**: You can use the [magic-cards-docker](https://github.com/maddox/magic-cards-docker) project to get Magic Cards and Sonos HTTP API up and running all at once. This uses Docker to simply load both projects at once. Easy peasy.
 
 ### Sonos Action Configuration
 
@@ -103,15 +105,15 @@ The Sonos action is quite customizable. Here's an example of the config:
 }
 ```
 
-The host, port, username, password should be self explanatory.
+The `host`, `port`, `username`, `password` should be self explanatory.
 
-`room` allows you to tell Magic Cards which room you want to start playing music on. `room` is case sensitive.
+`room` allows you to tell Magic Cards which Sonos speaker you want to start playing music on. `room` is case sensitive.
 
 The next few config options let you tell Magic Cards what kind of play style to be set when that type of content is started.
 
 ### Spotify
 
-If you want to queue Spotify music, you'll need to get a `Client ID` and `Client Secret` from Spotify and add it to the configuration of `node-sonos-http-api`. That's how it's able to look up and queue music from Spotify. You can read more about how to get these in the [configuration documentation](install.md#spotify). Once you get those, you can use them for Magic Cards and for `node-sonos-http-api`'s settings. Read about that [here](https://github.com/jishi/node-sonos-http-api#settingsjson);
+If you want to queue Spotify music, you'll need to get a `Client ID` and `Client Secret` from Spotify and add it to the configuration of Sonos HTTP API. That's how it's able to look up and queue music from Spotify. You can read more about how to get these in the [configuration documentation](install.md#spotify). Once you get those, you can use them for Magic Cards and for Sonos HTTP API's settings. Read about that [here](https://github.com/jishi/node-sonos-http-api#settingsjson).
 
 ## Home Assistant
 
@@ -181,6 +183,16 @@ The Channels configuration is pretty basic. Point it at the device that Channels
   "port": "57000"
 }
 ```
+
+### Channels Action URI
+
+When your card has a content type of `Channel`, use the channel number for its URI. The Channels action will then use it when changing channels.
+
+ex: `12.1`
+
+If your card has a content of `Movie` or `Show`, use the ID of the recording in your Channels DVR library. You can find this ID by clicking on a movie or recording in the Channels DVR web admin.
+
+ex: `4021`
 
 ## Scripts
 

@@ -60,7 +60,7 @@ These should be obvious. If you leave off a subtitle, it won't show. Art URL is 
 
 The card code is the actual unique code on the physical RFID card you want to map to the card. RFID card readers show up as simple keyboards to computers.  Once you've created your card, just focus the Card Code input and scan your card and the code will be entered automatically.
 
-Protip: buy a second scanner to keep plugged into your computer so you can just manage all your cards from your browser. That's what makes Magic Cards so great.
+**Protip**: buy a second scanner to keep plugged into your computer so you can just manage all your cards from your browser. That's what makes Magic Cards so great.
 
 ### URI
 
