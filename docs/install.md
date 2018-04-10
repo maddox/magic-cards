@@ -159,6 +159,8 @@ This is the main configuration file. You'll need to edit a few things. Here's an
 
 You need to define which input device that Magic Cards uses to detect card scanning. If the only thing you have plugged into the Pi is the scanner, more than likely it'll be `event0`. Otherwise you'll have to determine which device it is by looking in the `/dev/input` directory on your Pi.
 
+#### Spotify
+
 The Spotify settings have to do with the [Quick Fill](cards.md#quick-fill) feature for creating cards. Magic Cards can populate your cards via Spotify URLs, but in order to do it, it needs to use the API. The API requires credentials to be used.
 
 This seems like a pain, but it's as easy as going to Spotify's [Developer Dashboard](https://beta.developer.spotify.com/dashboard/applications). Just log in, and click `Create a Client ID`. It will walk you through everything. When you're done, you'll have the Client ID and Client Secret that you need for Magic Cards. Enter them into your `config.json` and Magic Cards will then be able to populate your cards automatically with a URL.
