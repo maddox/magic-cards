@@ -109,6 +109,10 @@ The host, port, username, password should be self explanatory.
 
 The next few config options let you tell Magic Cards what kind of play style to be set when that type of content is started.
 
+### Spotify
+
+If you want to queue Spotify music, you'll need to get a `Client ID` and `Client Secret` from Spotify and add it to the configuration of `node-sonos-http-api`. That's how it's able to look up and queue music from Spotify. You can read more about how to get these in the [configuration documentation](install.md#spotify). Once you get those, you can use them for Magic Cards and for `node-sonos-http-api`'s settings. Read about that [here](https://github.com/jishi/node-sonos-http-api#settingsjson);
+
 ## Home Assistant
 
 If you have [Home Assistant](https://home-assistant.io) set up at home, integrating with it is super simple.
