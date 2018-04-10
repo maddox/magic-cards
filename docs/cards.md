@@ -85,3 +85,5 @@ This makes it real easy to make sure the card will do what it's supposed to when
 Magic Cards doesn't have the ability to print cards directly. But, [Brainstorm ID](https://brainstormidsupply.com) the company that sells the inkjet cards has some [great guides and tutorials on doing it](https://brainstormidsupply.com/guides-videos-tutorials/).
 
 They provide [lots of templates](https://brainstormidsupply.com/learning-center/inkjet-pvc-cards-help.html) for different printer configurations and even [a nice PDF generator](https://brainstormidsupply.com/id-card-printing-layout-tool.html) that you can just add card images to and get a ready to print document.
+
+**Protip**: When printing your cards with full bleed, be sure to wipe down the tray before you start with another set of cards to avoid an inky mess.
