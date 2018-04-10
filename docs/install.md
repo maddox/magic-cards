@@ -4,62 +4,25 @@ Magic Cards isn't terribly hard to set up, but there's some assumptions made for
 
 Magic Cards will only run on Linux due to how it listens for input from the card reader.
 
-* [Prerequisites](#prerequisites)
+* [Raspberry Pi](#raspberry-pi)
 * [Standalone or Docker](standalone-or-docker)
 * [Docker Install](docker-install)
-* [Install](#install)
+* [Standalone Install](#standalone-install)
 * [Configure](#configure)
 * [Start it up](#start)
 * [Stop & Restart](#stop--restart)
 * [Upgrade](#upgrade)
 
-## Prerequisites
+## Raspberry Pi
 
 You should have a Raspberry Pi already flashed and ready to install software on with SSH access. Magic Cards was developed for a Raspberry Pi Zero W, but it should work on anything newer than the original Raspberry Pi. The Pi will of course need to be connected to your network.
-
-### Git
-
-You should have the git source control system installed so you can pull down the code and upgrade it later.
-
-You can install it with:
-
-```bash
-sudo apt-get install git
-```
-
-### Node.js & Yarn
-
-Magic Cards is written in Node.js. It starts as 2 processes. The server that lets you manage the cards and the scanner that listens for card scans.
-
-You'll need to have node and yarn installed on your Pi before you start setting up Magic Cards.
-
-If you don't have Node or yarn installed, here's some simple instructions. Using [this repo](https://github.com/sdesalas/node-pi-zero), you can get node installed with a single command:
-
-```bash
-wget -O - https://raw.githubusercontent.com/sdesalas/node-pi-zero/master/install-node-v9.8.0.sh | bash
-```
-
-After you have node installed, edit your `~/.profile` file to add:
-
-```bash
-export PATH=$PATH:/opt/nodejs/bin
-```
-
-This will add support for node CLI tools, like yarn.
-
-Finally, if you don't have yarn installed, install it:
-
-```bash
-npm install yarn -g
-```
-
-You should be all set up to get Magic Cards running now.
 
 ## Standalone or Docker
 
 Magic Cards can be run standalone on your Pi or with a Docker container. The choice is yours. I highly suggest you just use Docker though. It means you don't have to do anything to get your environment right.
 
 Protip: If you want to get up and running with Magic Cards and Sonos the fastest, you could use the [magic-cards-docker](https://github.com/maddox/magic-cards-docker). This is a repo that combines Magic Cards and the project that powers Sonos queueing all in one.
+
 
 ## Docker Install
 
@@ -114,9 +77,52 @@ This will download, build, and run the container and pass in your `config` direc
 
 After that, the container will start up. It may take a little bit. It's just a little Raspberry Pi after all.
 
+## Standalone Install
 
+Follow these instructions to get Magic Cards running on its own.
 
-## Install
+### Prerequisites
+
+You'll need to ensure the environment on your Pi is ready to run Magic Cards
+
+#### Git
+
+You should have the git source control system installed so you can pull down the code and upgrade it later.
+
+You can install it with:
+
+```bash
+sudo apt-get install git
+```
+
+#### Node.js & Yarn
+
+Magic Cards is written in Node.js. It starts as 2 processes. The server that lets you manage the cards and the scanner that listens for card scans.
+
+You'll need to have node and yarn installed on your Pi before you start setting up Magic Cards.
+
+If you don't have Node or yarn installed, here's some simple instructions. Using [this repo](https://github.com/sdesalas/node-pi-zero), you can get node installed with a single command:
+
+```bash
+wget -O - https://raw.githubusercontent.com/sdesalas/node-pi-zero/master/install-node-v9.8.0.sh | bash
+```
+
+After you have node installed, edit your `~/.profile` file to add:
+
+```bash
+export PATH=$PATH:/opt/nodejs/bin
+```
+
+This will add support for node CLI tools, like yarn.
+
+Finally, if you don't have yarn installed, install it:
+
+```bash
+npm install yarn -g
+```
+
+You should be all set up to get Magic Cards running now.
+
 
 Follow these steps to get Magic Cards running on your Pi.
 
