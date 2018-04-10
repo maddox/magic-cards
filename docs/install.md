@@ -5,8 +5,8 @@ Magic Cards isn't terribly hard to set up, but there's some assumptions made for
 Magic Cards will only run on Linux due to how it listens for input from the card reader.
 
 * [Raspberry Pi](#raspberry-pi)
-* [Standalone or Docker](standalone-or-docker)
-* [Docker Install](docker-install)
+* [Standalone or Docker](#standalone-or-docker)
+* [Docker Install](#docker-install)
 * [Standalone Install](#standalone-install)
 * [Configure](#configure)
 * [Start it up](#start)
