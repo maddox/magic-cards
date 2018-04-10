@@ -11,6 +11,8 @@ Magic Cards merges the physical world with the digital world. It lets you create
 * Tune to a TV channel
 * Unlock your back door
 
+Scan your card, music starts playing. Boom.
+
 ## How does it work?
 
 RFID cards each have a unique ID. These cards are cheap, inkjet printable, and the card readers cost about $10. Magic Cards lets you create cards with art, titles, and actions that happen when the specific cards are scanned.
