@@ -28,7 +28,7 @@ All cards have these properties:
 
 If you're creating cards for Apple Music or Spotify, you can simply paste the url in the field at the top of the form. Magic Cards will read it and automatically populate the card with the data it needs.
 
-\*Quick filling with Spotify URLs requires you to set it up appropriatly. Learn how to do that in the [configuration documentation](/docs/install.md#configjson)
+\*Quick filling with Spotify URLs requires you to set it up appropriatly. Learn how to do that in the [configuration documentation](/docs/install.md#configjson).
 
 
 ### Content Type
@@ -66,7 +66,7 @@ The card code is the actual unique code on the physical RFID card you want to ma
 
 URI communicates exactly what to do to the Action that processes the card scan. URI can be anything you want. But some actions expect specific types of URIs.
 
-The Sonos action expects a specific format for music. If you're using the Home Assistant action, you can pick your own URI, but this will be what you use to communicate to Home Assistant what to do with the card that has been scanned. The same goes for the script Action. Fill the URI with data that you can do something with later when processing it.
+The Sonos action expects a specific format for music. If you're using the Home Assistant action, you can pick your own URI, but this will be what you use to communicate to Home Assistant what to do with the card that has been scanned. The same goes for the Script Action. Fill the URI with data that you can do something with later when processing it.
 
 ## Managing Cards
 

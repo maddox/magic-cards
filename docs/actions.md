@@ -111,7 +111,7 @@ The `host`, `port`, `username`, `password` should be self explanatory.
 
 The next few config options let you tell Magic Cards what kind of play style to be set when that type of content is started.
 
-### Spotify
+#### Spotify
 
 If you want to queue Spotify music, you'll need to get a `Client ID` and `Client Secret` from Spotify and add it to the configuration of Sonos HTTP API. That's how it's able to look up and queue music from Spotify. You can read more about how to get these in the [configuration documentation](install.md#spotify). Once you get those, you can use them for Magic Cards and for Sonos HTTP API's settings. Read about that [here](https://github.com/jishi/node-sonos-http-api#settingsjson).
 

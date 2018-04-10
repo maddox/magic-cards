@@ -23,6 +23,8 @@ If you're using a Raspberry Pi Zero, you'll need to get an [OTG USB cable](https
 <a href="https://amzn.to/2GLiKO5"><img src="https://images-na.ssl-images-amazon.com/images/I/61gh-9A9smL._SL1500_.jpg" height="200px"></a>
 </div>
 
+Protip: buy a second scanner to keep plugged into your computer so you can just manage all your cards from your browser. That's what makes Magic Cards so great.
+
 ## Programming the Reader
 
 One little gotcha is that your RFID card reader will be delivered in an incompatible mode. You're going to need to reprogram it to output in a different format.
