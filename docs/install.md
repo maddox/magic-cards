@@ -53,6 +53,62 @@ npm install yarn -g
 
 You should be all set up to get Magic Cards running now.
 
+## Standalone or Docker
+
+Magic Cards can be run standalone or with a Docker container. The choice is yours. I highly suggest you just use Docker though. It means you don't have to do anything to get your environment right.
+
+## Docker Install
+
+Installing using Docker is the easiest path. You'll need to make sure you have Docker installed on your Pi first.
+
+### Install Docker
+
+Installing Docker is as easy as a couple of commands:
+
+```bash
+curl -sSL https://get.docker.com/ | sh
+```
+
+Once it's installed, run this command so your `pi` user can use Docker.
+
+```bash
+sudo usermod -G docker pi
+```
+
+Log out of your Pi and back in so your user has permissions to use Docker.
+
+### Run Container
+
+To run the Docker container, you need to do a couple things first. Create a directory for it to run in, set up your configuration, and then run the command to load up the container.
+
+```bash
+mkdir magic-cards
+cd magic-cards
+mkdir config
+cd config
+```
+
+After that, you should be in the `config` directory. Read the [standalone docs](#configure) to learn how to configure Magic Cards.
+
+Once you've set up your configuration, just load the Docker container:
+
+```bash
+docker run \
+  --name magic-cards \
+  --restart=always \
+  -d \
+  -p 5000:5000 \
+  -v `pwd`/config:/usr/src/app/config \
+  --device=/dev/input/event0 \
+  jonmaddox/magic-cards
+```
+
+This will download, build, and run the container and pass in your `config` directory so it knows how to run. You may need to edit the `device` param to properly map to the input device Magic Cards will be reading from for your card reader. You can read about that in the [standalone docs](#configure).
+
+After that, the container will start up. It may take a little bit. It's just a little Raspberry Pi after all.
+
+
+
 ## Install
 
 Follow these steps to get Magic Cards running on your Pi.
