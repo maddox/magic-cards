@@ -22,7 +22,7 @@ All cards have these properties:
 * Card Code
 * URI
 
-![](/docs/images/card-form.png)
+![](/docs/images/quick-fill.gif)
 
 ### Quick Fill
 
