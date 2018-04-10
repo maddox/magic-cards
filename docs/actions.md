@@ -138,7 +138,9 @@ You could even make a card that pauses the music using the URI `pause`. It can b
 
 Learn about creating [Presets](https://github.com/jishi/node-sonos-http-api#presetsjson-deprecated-use-preset-files-instead) and [queueing directly from streaming services](https://github.com/jishi/node-sonos-http-api#spotify-apple-music-and-amazon-music-experimental).
 
-Just remember, the URI is completing the API endpoint.
+Just remember, the URI is completing the API endpoint. You can do anything that Sonos HTTP API supports.
+
+Note: Sonos URIs need to be URL encoded. Ex: `favorite/Cooking%20Music`.
 
 ## Home Assistant
 
