@@ -39,9 +39,9 @@ This isn't all. Magic Cards makes it easy to add more actionable platforms for t
 
 You might be wondering why you would want to bring back physical media after finally ridding ourselves of all of it.
 
-Why use these physical cards when we can start music just by using our voice now. Well, why not both?
+Why would you use these physical cards when we can start music just by using our voice now? Well, why not both?
 
-Yes, physical media had its downsides. You had to store it, get up to play it, and it would get damaged. And digital media is transparent, accessible from almost anywhere, and never wears out.
+Yes, physical media had its downsides. You had to store it, get up to play it, and it would get damaged. Digital media is transparent, accessible from almost anywhere, and never wears out.
 
 Ridding our world of physical media ends up having quite a few drawbacks:
 
@@ -52,7 +52,7 @@ Ridding our world of physical media ends up having quite a few drawbacks:
 
 Having a subset of your favorite music or movies ends up being a really great way to pick something to put on. Our brains are faster than any scrolling list of album covers. Physically holding and sifting through music/movies ends up being way faster.
 
-As our media leaves the physical space and enters the digital space, kids start to get left out. They have no books to pull off a shelf and sift through. They have no music to browse and experiment with listening to. These things are important for growing up. Checking out your parents' music is part of growing up!
+As our media leaves the physical space and enters the digital space, kids start to get left out. They have no books to pull off a shelf and sift through. They have no music to browse and experiment by listening. These things are important for kids. Checking out your parents' music is part of growing up!
 
 And for the little ones, this gives them a real way to put music on themselves.
 

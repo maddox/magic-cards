@@ -27,7 +27,7 @@ If you're using a Raspberry Pi Zero, you'll need to get an [OTG USB cable](https
 
 One little gotcha is that your RFID card reader will be delivered in an incompatible mode. You're going to need to reprogram it to output in a different format.
 
-You will need a Windows computer to do this and VMWare or Parallels won't work, because they see the reader as a normal keyboard and not a programmable USB device. (Open an issue if you do get this to work somehow.)
+You will need a Windows computer to do this. VMWare or Parallels won't work. They see the reader as a normal keyboard and not a programmable USB device. (Open an issue if you do get this to work somehow.)
 
 You'll need to download [this software](https://www.dropbox.com/s/ena4ukh9wewhj9x/rfid-reader-programmer.zip?dl=0). Just plug the card reader into the Windows computer, open the software, and configure it according to the screenshot below.
 
@@ -38,7 +38,7 @@ Click `Set` to write the config to the card reader. It takes about 1 second to d
 
 ## Cards & Printing
 
-Once you have your Pi set up, you'll need cards. You can get a set of 50 from [Brainstorm ID](https://brainstormidsupply.com) through [Amazon](https://amzn.to/2GHk9sZ). Or order directly from their site.
+Once you have your Pi set up, you'll need cards. You can get a set of 50 from [Brainstorm ID](https://brainstormidsupply.com) through [Amazon](https://amzn.to/2GHk9sZ). Or, order directly from their site.
 
 In order to print the cards on a printer, you'll need a special tray. Not all printers support them. The makers of the printable cards, Brainstorm ID, [makes and sells trays](https://brainstormidsupply.com/inkjet-id-cards/printer-trays).
 
