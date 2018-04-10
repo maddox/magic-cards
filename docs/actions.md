@@ -74,7 +74,7 @@ The type value of the config tells Magic Cards what kind of Action it is. When p
 
 Sonos is probably the best whole home audio system you can get, if you're into any kind of automation like this. It's stable, and open enough that you can control it locally :metal:
 
-The Sonos action utilizes another open source project to talk to your Sonos and tell it what to play. In order to use the Sonos action, you'll have to have the [Sonos HTTP API](https://github.com/jishi/node-sonos-http-api) set up. If you use Docker, it's as easy as starting up [this container](https://hub.docker.com/r/chrisns/docker-node-sonos-http-api/).
+The Sonos action utilizes another open source project to talk to your Sonos and tell it what to play. In order to use the Sonos action, you'll have to have the [Sonos HTTP API](https://github.com/jishi/node-sonos-http-api) set up. If you have another home server you use for automation or what not, I'd suggest you just run it there. If you use Docker, it's as easy as starting up [this container](https://hub.docker.com/r/chrisns/docker-node-sonos-http-api/).
 
 ### Sonos Action Configuration
 
