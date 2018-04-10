@@ -60,7 +60,7 @@ Magic Cards lets you marry what's great about physical media with what's great a
 
 ![](/docs/images/cards-fanned.jpg)
 
-<img src="https://media.giphy.com/media/1QetzenJpy1MxafAD3/giphy.gif" width="800px">
+<img src="https://image.ibb.co/n6J71c/scan.gif" width="800px">
 
 ## Setup
 
