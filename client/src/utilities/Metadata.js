@@ -30,7 +30,7 @@ export default class Metadata {
       .then(data => {
         type = contentType
         title = data.name
-        uri = `spotify/next/${data.uri}`
+        uri = `spotify/now/${data.uri}`
 
         if (data.artists && data.artists[0]) {
           subtitle = data.artists[0].name
@@ -83,7 +83,7 @@ export default class Metadata {
             subtitle = result.artistName
           }
 
-          uri = `applemusic/next/${type}:${itunesID}`
+          uri = `applemusic/now/${type}:${itunesID}`
 
           return {type: type, artURL: artURL, title: title, subtitle: subtitle, uri: uri}
         })
