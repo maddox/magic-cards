@@ -115,6 +115,31 @@ The next few config options let you tell Magic Cards what kind of play style to 
 
 If you want to queue Spotify music, you'll need to get a `Client ID` and `Client Secret` from Spotify and add it to the configuration of Sonos HTTP API. That's how it's able to look up and queue music from Spotify. You can read more about how to get these in the [configuration documentation](install.md#spotify). Once you get those, you can use them for Magic Cards and for Sonos HTTP API's settings. Read about that [here](https://github.com/jishi/node-sonos-http-api#settingsjson).
 
+### Sonos URI
+
+The Sonos action uses the Sonos HTTP API project to talk to your Sonos speaker. The Sonos Action uses path fragments that are eventually used to create API endpoints to communicate with Sonos HTTP API. If you're just creating albums and using [Quick Fill](cards.md#quick-fill), Magic Cards takes care of all of this for you. But if you want to get fancy, you can do even more with the URI.
+
+#### Endpoint Creation
+
+Magic Cards takes the host you provided in your Sonos action config, and pieces it together with your URI to talk to Sonos HTTP API. For example, if you want to queue a Sonos favorite, you can use `favorite/Salsa` for your URI. The action will then join the host, port, room name, and the URI. So:
+
+`host`: 192.168.1.150  
+`port`: 5005  
+`room`: Kitchen  
+`uri`: `favorite/Salsa`
+
+will output...
+
+`http://192.168.1.150:5005/Kitchen/favorite/Salsa`
+
+...which will queue your Salsa Sonos favorite.
+
+You could even make a card that pauses the music using the URI `pause`. It can be as simple or as powerful as you want.
+
+Learn about creating [Presets](https://github.com/jishi/node-sonos-http-api#presetsjson-deprecated-use-preset-files-instead) and [queueing directly from streaming services](https://github.com/jishi/node-sonos-http-api#spotify-apple-music-and-amazon-music-experimental).
+
+Just remember, the URI is completing the API endpoint.
+
 ## Home Assistant
 
 If you have [Home Assistant](https://home-assistant.io) set up at home, integrating with it is super simple.
