@@ -64,6 +64,13 @@ Magic Cards lets you marry what's great about physical media with what's great a
 
 You can find more information about installation and how to use Magic Cards in the [documentation](/docs).
 
+## Community
+
+Check out the Magic Cards community on Spectrum. Chat about cool tricks or visit for some troubleshooting.
+
+[![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/magic-cards)
+
+
 ## Contributions
 
 Find a bug, or want to add a new action? Contributions are very welcomed!
