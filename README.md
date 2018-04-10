@@ -73,7 +73,7 @@ You can find more information about installation and how to use Magic Cards in t
 
 Find a bug, or want to add a new action? Contributions are very welcomed!
 
-* Fork the respo
+* Fork the repo
 * Create a feature branch
 * Open a Pull Request
 
