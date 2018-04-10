@@ -63,6 +63,9 @@ Protip: If you want to get up and running with Magic Cards and Sonos the fastest
 
 ## Docker Install
 
+[![Docker Stars](https://img.shields.io/docker/stars/jonmaddox/magic-cards.svg)](https://hub.docker.com/r/jonmaddox/magic-cards)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jonmaddox/magic-cards.svg)](https://hub.docker.com/r/jonmaddox/magic-cards)
+
 Installing using Docker is the easiest path. You'll need to make sure you have Docker installed on your Pi first.
 
 ### Install Docker
