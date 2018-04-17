@@ -1,3 +1,5 @@
+const globalConfig = require(__dirname + '/../../config/config.json')
+
 class Action {
   constructor(card, config) {
     delete config.action
@@ -27,7 +29,8 @@ class Action {
   }
 
   envVars() {
-    const envVars = this.envVarsForObject(this.card, 'CARD')
+    let envVars = this.envVarsForObject(this.card, 'CARD')
+    envVars = Object.assign(envVars, {magic_cards_room: globalConfig.room})
 
     const prefix = this.constructor.name.replace('Action', '').toUpperCase()
     return Object.assign(envVars, this.envVarsForObject(this.config, prefix))
