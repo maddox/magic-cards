@@ -18,7 +18,7 @@ class HomeAssistantAction extends Action {
       payload[key.toLowerCase()] = envVars[key]
     })
 
-    return this.card
+    return payload
   }
 
   async request(payload) {
