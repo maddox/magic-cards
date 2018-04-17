@@ -148,7 +148,7 @@ If you have [Home Assistant](https://home-assistant.io) set up at home, integrat
 
 The Home Assistant action simply pushes the event `magic_card_scanned`. All you have to do is set up an automation that uses that event as a trigger.
 
-Magic Cards delivers all of the card's properties when it pushes the events, so they're available to you in your automation. Use `trigger.event.data` in your automation templates to get the data. Ex: `trigger.event.data.uri`, `trigger.event.data.title`.
+Magic Cards delivers all of the card's properties in the event data payload prefixed with `card_` when it pushes the events, so they're available to you in your automation. Use `trigger.event.data` in your automation templates to get the data. Ex: `trigger.event.data.card_uri`, `trigger.event.data.card_title`.
 
 ### Card URI
 
@@ -169,15 +169,15 @@ automation:
       - platform: event
         event_type: magic_card_scanned
         event_data:
-          type: album
+          card_type: album
     action:
       - service: media_player.select_source
         data_template:
-          entity_id: "media_player.{{ trigger.event.data.uri.split('|')[0] }}"
-          source: "{{ trigger.event.data.uri.split('|')[1] }}"
+          entity_id: "media_player.{{ trigger.event.data.card_uri.split('|')[0] }}"
+          source: "{{ trigger.event.data.card_uri.split('|')[1] }}"
 ```
 
-When triggered, the automation reads from the URI property and uses the first part to set the entity id of the media player that will be used. It uses the second part as the name of the source that should be played.
+When triggered, this automation reads from the card's URI property and uses the first part to set the entity id of the media player that will be used. It uses the second part as the name of the source that should be played.
 
 ### Home Assistant Action Configuration
 
