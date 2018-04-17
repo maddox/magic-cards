@@ -162,6 +162,7 @@ This is the main configuration file. You'll need to edit a few things. Here's an
 
 ```json
 {
+  "room": "Living Room",
   "input_device": "event0",
   "spotify": {
     "clientID": "XXX",
@@ -171,6 +172,10 @@ This is the main configuration file. You'll need to edit a few things. Here's an
 ```
 
 You need to define which input device that Magic Cards uses to detect card scanning. If the only thing you have plugged into the Pi is the scanner, more than likely it'll be `event0`. Otherwise you'll have to determine which device it is by looking in the `/dev/input` directory on your Pi.
+
+#### Room
+
+The `room` setting lets you assign your Magic Cards setup to a room. This value will be passed along to actions as the `magic_cards_room` attribute. This lets your automations know which room the card was scanned from.
 
 #### Spotify
 
