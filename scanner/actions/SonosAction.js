@@ -18,9 +18,23 @@ class SonosAction extends Action {
         .then(setRepeat())
     } else {
       this.queueAndPlay().then(setRepeat())
-    }
   }
 
+  async setShuffle(mode) {
+    if (!mode) {
+      return
+    }
+
+    return this.shuffle(mode)
+  }
+
+  async setRepeat(mode) {
+    if (!mode) {
+      return
+    }
+
+    return this.repeat(mode)
+  }
   async queueAndPlay() {
     // this.clearQueue()
     // .then(this.request(this.card.uri))
