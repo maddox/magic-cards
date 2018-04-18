@@ -48,6 +48,8 @@ class SonosAction extends Action {
     const room = encodeURIComponent(this.config.room)
     const baseURL = `http://${this.config.host}:${this.config.port}/${room}/${path}`
 
+    console.log(`Calling: ${baseURL}`)
+
     let headers = {}
     if (this.config.username && this.config.password) {
       headers['Authorization'] =
