@@ -8,15 +8,15 @@
     "room": "Living Room",
     "playlist": {
       "shuffle": "on",
-      "repeat": "all"
+      "repeat": "on"
     },
     "album": {
       "shuffle": "off",
-      "repeat": "all"
+      "repeat": "off"
     },
     "song": {
       "shuffle": "off",
-      "repeat": "all"
+      "repeat": "on"
     }
   },
   "Home Assistant": {

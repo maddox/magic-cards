@@ -6,21 +6,34 @@ class SonosAction extends Action {
   process() {
     const contentConfig = this.config[this.card.type] || {}
 
-    const setRepeat = () => {
-      if (contentConfig.repeat) {
-        this.repeat(contentConfig.repeat)
-      }
+    const request = async () => {
+      await this.setRepeat(contentConfig.repeat)
+      await this.clearQueue()
+      await this.setShuffle(contentConfig.shuffle)
+
+      setTimeout(() => {
+        this.request(this.card.uri)
+      }, 200)
     }
 
-    if (contentConfig.shuffle) {
-      this.shuffle(contentConfig.shuffle)
-        .then(this.queueAndPlay())
-        .then(setRepeat())
-    } else {
-      this.queueAndPlay().then(setRepeat())
-    }
+    request()
   }
 
+  async setShuffle(mode) {
+    if (!mode) {
+      return
+    }
+
+    return this.shuffle(mode)
+  }
+
+  async setRepeat(mode) {
+    if (!mode) {
+      return
+    }
+
+    return this.repeat(mode)
+  }
   async queueAndPlay() {
     // this.clearQueue()
     // .then(this.request(this.card.uri))
@@ -47,6 +60,8 @@ class SonosAction extends Action {
   async request(path) {
     const room = encodeURIComponent(this.config.room)
     const baseURL = `http://${this.config.host}:${this.config.port}/${room}/${path}`
+
+    console.log(`Calling: ${baseURL}`)
 
     let headers = {}
     if (this.config.username && this.config.password) {
