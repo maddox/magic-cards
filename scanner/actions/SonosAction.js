@@ -6,18 +6,17 @@ class SonosAction extends Action {
   process() {
     const contentConfig = this.config[this.card.type] || {}
 
-    const setRepeat = () => {
-      if (contentConfig.repeat) {
-        this.repeat(contentConfig.repeat)
-      }
+    const request = async () => {
+      await this.setRepeat(contentConfig.repeat)
+      await this.clearQueue()
+      await this.setShuffle(contentConfig.shuffle)
+
+      setTimeout(() => {
+        this.request(this.card.uri)
+      }, 200)
     }
 
-    if (contentConfig.shuffle) {
-      this.shuffle(contentConfig.shuffle)
-        .then(this.queueAndPlay())
-        .then(setRepeat())
-    } else {
-      this.queueAndPlay().then(setRepeat())
+    request()
   }
 
   async setShuffle(mode) {
