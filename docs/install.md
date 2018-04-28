@@ -171,7 +171,23 @@ This is the main configuration file. You'll need to edit a few things. Here's an
 }
 ```
 
-You need to define which input device that Magic Cards uses to detect card scanning. If the only thing you have plugged into the Pi is the scanner, more than likely it'll be `event0`. Otherwise you'll have to determine which device it is by looking in the `/dev/input` directory on your Pi.
+You need to define which input device that Magic Cards uses to detect card scanning. If the only thing you have plugged into the Pi is the scanner, more than likely it'll be `event0`. 
+
+Otherwise, the correct event path can be determined with the following commands:
+
+```bash
+cd /dev/input/by-id/
+ls -l
+```
+
+The output will look similar to:
+
+```bash
+total 0
+lrwxrwxrwx 1 root root 9 Mar 25 20:18 usb-Generic_USB_Audio_201405280001-event-ifff -> ../event0
+lrwxrwxrwx 1 root root 9 Apr 28 14:29 usb-HXGCoLtd_27db-event-kbd -> ../event3
+```
+In the above example the reader is mapped to `event3`.
 
 #### Room
 
