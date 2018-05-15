@@ -1,4 +1,7 @@
 {
+  "engines" : {
+    "node" : "9.11.1"
+  },
   "name": "magic-cards-client",
   "author": "Jon Maddox <jon@jonmaddox.com>",
   "license": "MIT",
