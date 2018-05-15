@@ -40,7 +40,7 @@ Click `Set` to write the config to the card reader. It takes about 1 second to d
 
 ## Cards & Printing
 
-Once you have your Pi set up, you'll need cards. You can get a set of 50 from [Brainstorm ID](https://brainstormidsupply.com) through [Amazon](https://amzn.to/2GHk9sZ). Or, order directly from their site.
+Once you have your Pi set up, you'll need RFID cards with a 125KHz proximity chip. You can get a set of 50 from [Brainstorm ID](https://brainstormidsupply.com) through [Amazon](https://amzn.to/2GHk9sZ). Or, order directly from their site.
 
 In order to print the cards on a printer, you'll need a special tray. Not all printers support them. The makers of the printable cards, Brainstorm ID, [makes and sells trays](https://brainstormidsupply.com/inkjet-id-cards/printer-trays).
 
