@@ -1,4 +1,4 @@
-FROM resin/raspberry-pi-alpine-node
+FROM resin/raspberry-pi-alpine-node:9.11-slim
 
 RUN npm install yarn -g
 RUN npm install concurrently -g
