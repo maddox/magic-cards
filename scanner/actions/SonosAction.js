@@ -35,12 +35,6 @@ class SonosAction extends Action {
 
     return this.repeat(mode)
   }
-  async queueAndPlay() {
-    // this.clearQueue()
-    // .then(this.request(this.card.uri))
-    // .then(this.play())
-    this.roomRequest(this.card.uri)
-  }
 
   async clearQueue() {
     return this.roomRequest('clearqueue')
