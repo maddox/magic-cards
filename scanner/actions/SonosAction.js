@@ -73,8 +73,7 @@ class SonosAction extends Action {
       method: 'GET',
       headers: headers,
     })
-      .then(res => res.text())
-      .then(body => console.log(body))
+      .then(res => res.json())
       .catch(error => console.log(error))
   }
 }
