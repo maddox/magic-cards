@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.2] - 2018-05-16
+### Improved
+- Magic Cards will now force your Sonos player to play from the queue after scanning if it was previously playing a radio station.
+
+### Fixed
+- The client web app is now pinned to node version `9.11.1` and the Docker container uses that version of node as well.
+
 ## [1.1.1] - 2018-04-18
 ### Improved
 - Sonos queue is cleared before queuing music.
