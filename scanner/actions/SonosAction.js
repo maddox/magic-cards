@@ -8,6 +8,7 @@ class SonosAction extends Action {
 
     const request = async () => {
       await this.setRepeat(contentConfig.repeat)
+      await this.forcePlaylistPlayback()
       await this.clearQueue()
       await this.setShuffle(contentConfig.shuffle)
 
@@ -55,6 +56,13 @@ class SonosAction extends Action {
 
   async repeat(mode) {
     return this.roomRequest(`repeat/${mode}`)
+  }
+
+  async forcePlaylistPlayback() {
+    const room = this.config.room
+    const zones = await this.request('zones')
+    const zone = zones.find(zone => zone.coordinator.roomName === room)
+    return this.roomRequest(`SetAVTransportURI/x-rincon-queue:${zone.uuid}%230`)
   }
 
   async roomRequest(path) {
