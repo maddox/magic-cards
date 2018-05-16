@@ -8,11 +8,12 @@ class SonosAction extends Action {
 
     const request = async () => {
       await this.setRepeat(contentConfig.repeat)
+      await this.forcePlaylistPlayback()
       await this.clearQueue()
       await this.setShuffle(contentConfig.shuffle)
 
       setTimeout(() => {
-        this.request(this.card.uri)
+        this.roomRequest(this.card.uri)
       }, 200)
     }
 
@@ -34,32 +35,37 @@ class SonosAction extends Action {
 
     return this.repeat(mode)
   }
-  async queueAndPlay() {
-    // this.clearQueue()
-    // .then(this.request(this.card.uri))
-    // .then(this.play())
-    this.request(this.card.uri)
-  }
 
   async clearQueue() {
-    return this.request('clearqueue')
+    return this.roomRequest('clearqueue')
   }
 
   async play() {
-    return this.request('play')
+    return this.roomRequest('play')
   }
 
   async shuffle(mode) {
-    return this.request(`shuffle/${mode}`)
+    return this.roomRequest(`shuffle/${mode}`)
   }
 
   async repeat(mode) {
-    return this.request(`repeat/${mode}`)
+    return this.roomRequest(`repeat/${mode}`)
+  }
+
+  async forcePlaylistPlayback() {
+    const room = this.config.room
+    const zones = await this.request('zones')
+    const zone = zones.find(zone => zone.coordinator.roomName === room)
+    return this.roomRequest(`SetAVTransportURI/x-rincon-queue:${zone.uuid}%230`)
+  }
+
+  async roomRequest(path) {
+    const room = encodeURIComponent(this.config.room)
+    this.request(`${room}/${path}`)
   }
 
   async request(path) {
-    const room = encodeURIComponent(this.config.room)
-    const baseURL = `http://${this.config.host}:${this.config.port}/${room}/${path}`
+    const baseURL = `http://${this.config.host}:${this.config.port}/${path}`
 
     console.log(`Calling: ${baseURL}`)
 
@@ -73,8 +79,7 @@ class SonosAction extends Action {
       method: 'GET',
       headers: headers,
     })
-      .then(res => res.text())
-      .then(body => console.log(body))
+      .then(res => res.json())
       .catch(error => console.log(error))
   }
 }
