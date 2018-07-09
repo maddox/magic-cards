@@ -105,7 +105,7 @@ The Sonos action is quite customizable. Here's an example of the config:
 }
 ```
 
-The `host`, `port`, `username`, `password` should be self explanatory.
+The `host`, `port`, `username`, `password` are for your node-sonos-http-api install.
 
 `room` allows you to tell Magic Cards which Sonos speaker you want to start playing music on. `room` is case sensitive.
 
