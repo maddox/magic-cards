@@ -2,6 +2,7 @@ const exec = require('child_process').exec
 const express = require('express')
 const path = require('path')
 const ejs = require('ejs')
+const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node')
 
 const config = require(__dirname + '/../config/config.json')
@@ -30,6 +31,16 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.get('/', (req, res) => {
   res.sendfile('index.html')
+})
+
+app.get('/cards', (req, res) => {
+  this.cardDataPath = __dirname + '/../config/cards.json'
+  if (fs.existsSync(this.cardDataPath)) {
+    var cards = JSON.parse(fs.readFileSync(this.cardDataPath, 'utf8'))
+    res.send(cards)
+  } else {
+    res.send("No cards found")
+  }
 })
 
 app.get('/card/:id', (req, res) => {
