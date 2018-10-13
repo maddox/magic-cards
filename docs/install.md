@@ -52,6 +52,7 @@ Log out of your Pi and back in so your user has permissions to use Docker.
 To run the Docker container, you need to do a couple things first. Create a directory for it to run in, set up your configuration, and then run the command to load up the container.
 
 ```bash
+cd ~/
 mkdir magic-cards
 cd magic-cards
 mkdir config
@@ -60,9 +61,10 @@ cd config
 
 After that, you should be in the `config` directory. Read the [standalone docs](#configure) to learn how to configure Magic Cards.
 
-Once you've set up your configuration, just load the Docker container:
+Once you've set up your configuration, navigate back to the `magic-cards` directory and load the Docker container:
 
 ```bash
+cd ~/magic-cards
 docker run \
   --name magic-cards \
   --restart=always \
@@ -171,7 +173,7 @@ This is the main configuration file. You'll need to edit a few things. Here's an
 }
 ```
 
-You need to define which input device that Magic Cards uses to detect card scanning. If the only thing you have plugged into the Pi is the scanner, more than likely it'll be `event0`. 
+You need to define which input device that Magic Cards uses to detect card scanning. If the only thing you have plugged into the Pi is the scanner, more than likely it'll be `event0`.
 
 Otherwise, the correct event path can be determined with the following commands:
 
