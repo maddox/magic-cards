@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.3] - 2018-10-19
+### Improved
+- Magic Cards now defaults to the `/queue/` command when auto generating a card. This fixes an issue where the `/now/` command advanced one track in the queue when queueing and playing.
+
 ## [1.1.2] - 2018-05-16
 ### Improved
 - Magic Cards will now force your Sonos player to play from the queue after scanning if it was previously playing a radio station.
