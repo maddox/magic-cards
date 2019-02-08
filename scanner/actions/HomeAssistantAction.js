@@ -28,7 +28,9 @@ class HomeAssistantAction extends Action {
     }/api/events/magic_card_scanned`
 
     let headers = {'Content-Type': 'application/json'}
-    if (this.config.password) {
+    if (this.config.token) {
+      headers['Authorization'] = `Bearer ${this.config.token}`
+    } else if (this.config.password) {
       headers['x-ha-access'] = this.config.password
     }
 
