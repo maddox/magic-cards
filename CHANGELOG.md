@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.4] - 2019-02-11
+### Improved
+- Magic Cards now supports authenticating Home Assistant using long lived access tokens.
+
 ## [1.1.3] - 2018-10-19
 ### Improved
 - Magic Cards now defaults to the `/queue/` command when auto generating a card. This fixes an issue where the `/now/` command advanced one track in the queue when queueing and playing.
