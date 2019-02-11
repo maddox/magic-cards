@@ -52,7 +52,7 @@ Magic Cards comes with an example actions configuration in `/config/actions.exam
     "host": "192.168.1.50",
     "port": "8123",
     "ssl": false,
-    "password": "hapassword"
+    "token": "hastoken"
   },
   "Family Room Channels": {
     "type": "channels",
@@ -123,9 +123,9 @@ The Sonos action uses the Sonos HTTP API project to talk to your Sonos speaker. 
 
 Magic Cards takes the host you provided in your Sonos action config, and pieces it together with your URI to talk to Sonos HTTP API. For example, if you want to queue a Sonos favorite, you can use `favorite/Salsa` for your URI. The action will then join the host, port, room name, and the URI. So:
 
-`host`: 192.168.1.150  
-`port`: 5005  
-`room`: Kitchen  
+`host`: 192.168.1.150
+`port`: 5005
+`room`: Kitchen
 `uri`: `favorite/Salsa`
 
 will output...
@@ -181,7 +181,7 @@ When triggered, this automation reads from the card's URI property and uses the 
 
 ### Home Assistant Action Configuration
 
-The Home Assistant configuration is pretty simple. Just point it at your Home Assistant insall, and boom.
+The Home Assistant configuration is pretty simple. Just point it at your Home Assistant install, provide a [long lived access token](https://developers.home-assistant.io/docs/en/auth_api.html#long-lived-access-token), and boom!
 
 ```json
 {
@@ -189,9 +189,11 @@ The Home Assistant configuration is pretty simple. Just point it at your Home As
   "host": "192.168.1.50",
   "port": "8123",
   "ssl": false,
-  "password": "hapassword"
+  "token": "hatoken"
 }
 ```
+
+You can also authenticate using your [API password](https://www.home-assistant.io/docs/authentication/providers/#legacy-api-password) by replacing `"token"` with `"password"`. However, note that Home Assistant considers this a legacy feature that is likely to be dropped in a future release.
 
 ## Channels
 
