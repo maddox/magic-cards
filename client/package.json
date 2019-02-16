@@ -1,6 +1,6 @@
 {
   "engines" : {
-    "node" : "9.11.1"
+    "node" : "9.11.2"
   },
   "name": "magic-cards-client",
   "author": "Jon Maddox <jon@jonmaddox.com>",
