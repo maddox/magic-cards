@@ -46,14 +46,14 @@ class CardEditor extends React.Component {
       return
     }
 
-    const action = this.props.data.actions.find(anAction => {
+    const action = (this.props.data.actions || []).find(anAction => {
       return anAction.name === this.state.action
     })
 
     const url = event.target.value
 
     Metadata.fetchMetadata(url).then(metadata => {
-      if (action.type !== 'sonos') {
+      if (action && action.type !== 'sonos') {
         delete metadata.uri
       }
       this.setState(metadata)
@@ -139,7 +139,7 @@ class CardEditor extends React.Component {
     const card = this.cardDataFromState()
     let actionOptions = []
 
-    if (actions) {
+    if (actions && actions.length > 0) {
       actionOptions = actions.map(action => {
         return {text: action.name, value: action.name}
       })
