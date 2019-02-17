@@ -61,6 +61,11 @@ class EditableCard extends React.Component {
     event.preventDefault()
     event.stopPropagation()
 
+    if (!this.props.card.code) {
+      alert('Card has no card code. Test aborted.')
+      return
+    }
+
     const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : ''
     const testerURL = baseURL + '/test/' + this.props.card.code
 
