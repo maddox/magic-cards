@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
-const base64 = require('base-64')
 const Action = require('./Action')
+const https = require('https')
 
 class HomeAssistantAction extends Action {
   process() {
@@ -34,11 +34,20 @@ class HomeAssistantAction extends Action {
       headers['x-ha-access'] = this.config.password
     }
 
-    return fetch(baseURL, {
+    const init = {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(payload),
-    })
+    }
+
+    // Compare to false so that we don't disable SSL if option omitted
+    if (this.config.verify_ssl === false) {
+      init.agent = new https.Agent({
+        rejectUnauthorized: false,
+      })
+    }
+
+    return fetch(baseURL, init)
       .then(res => res.text())
       .then(body => console.log(body))
       .catch(error => console.log(error))
