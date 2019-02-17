@@ -181,7 +181,7 @@ When triggered, this automation reads from the card's URI property and uses the 
 
 ### Home Assistant Action Configuration
 
-The Home Assistant configuration is pretty simple. Just point it at your Home Assistant install, provide a [long lived access token](https://developers.home-assistant.io/docs/en/auth_api.html#long-lived-access-token), and boom!
+The Home Assistant configuration is pretty simple. Just point it at your Home Assistant install, provide a long lived access token (in Home Assistant UI on the profile page), and boom!
 
 ```json
 {
