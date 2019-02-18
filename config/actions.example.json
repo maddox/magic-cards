@@ -24,6 +24,7 @@
     "host": "192.168.1.50",
     "port": "8123",
     "ssl": false,
+    "verify_ssl": true,
     "password": "hapassword"
   },
   "Family Room Channels": {

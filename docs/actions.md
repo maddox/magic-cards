@@ -52,6 +52,7 @@ Magic Cards comes with an example actions configuration in `/config/actions.exam
     "host": "192.168.1.50",
     "port": "8123",
     "ssl": false,
+    "verify_ssl": true,
     "token": "hastoken"
   },
   "Family Room Channels": {
@@ -189,9 +190,12 @@ The Home Assistant configuration is pretty simple. Just point it at your Home As
   "host": "192.168.1.50",
   "port": "8123",
   "ssl": false,
+  "verify_ssl": true,
   "token": "hatoken"
 }
 ```
+
+If you are using SSL for Home Assistant but are connecting via an IP address, the certificate will be invalid. In that case, set `verify_ssl` to `false`.
 
 You can also authenticate using your [API password](https://www.home-assistant.io/docs/authentication/providers/#legacy-api-password) by replacing `"token"` with `"password"`. However, note that Home Assistant considers this a legacy feature that is likely to be dropped in a future release.
 
