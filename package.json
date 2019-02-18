@@ -14,9 +14,9 @@
     "server": "cd server && yarn start",
     "stack": "concurrently --kill-others-on-fail \"yarn server\" \"yarn scanner\""
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "concurrently": "^3.5.0"
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.18.10"
   }
 }
