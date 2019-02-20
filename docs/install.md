@@ -87,6 +87,14 @@ Follow these instructions to get Magic Cards running on its own.
 
 You'll need to ensure the environment on your Pi is ready to run Magic Cards
 
+#### Permissions
+
+Your user `pi` needs to be part of the `input` group to be able to access the RFID reader, which is seen by the system as an input device.
+
+```bash
+sudo usermod -a -G input pi
+```
+
 #### Git
 
 You should have the git source control system installed so you can pull down the code and upgrade it later.
