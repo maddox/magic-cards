@@ -39,6 +39,12 @@ Installing Docker is as easy as a couple of commands:
 curl -sSL https://get.docker.com/ | sh
 ```
 
+If you are using a Raspberry Pi Zero W, there is an [issue](https://github.com/docker/for-linux/issues/490) with Docker 18.09.1 that prevents Docker from properly installing. The current workaround is to downgrade to Docker 18.06.1, by using the following command:
+
+```bash
+sudo apt-get install docker-ce=18.06.2~ce~3-0~raspbian
+```
+
 Once it's installed, run this command so your `pi` user can use Docker.
 
 ```bash
