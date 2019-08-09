@@ -94,7 +94,6 @@ You can check the log using the [docker logs](https://docs.docker.com/engine/ref
 ```bash
 docker logs --timestamps --follow magic-cards
 ```
-
 Once the application is started you should see something like this:
 
 ```bash
@@ -104,6 +103,14 @@ Once the application is started you should see something like this:
 2019-08-09T18:55:28.418045886Z [0] $ node server.js
 2019-08-09T18:55:28.735063502Z [1] $ node scanner.js
 2019-08-09T18:55:35.730293035Z [0] Listening on port 5000
+```
+
+This is also usefull to check the ID of a new card.
+
+```bash
+2019-08-09T19:20:02.420027842Z [1] Read Card ID: 0015977352
+2019-08-09T19:20:02.429422388Z [1] Finding card...
+2019-08-09T19:20:02.437754692Z [1] Card not found.
 ```
 
 ### Update Container
