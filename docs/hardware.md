@@ -40,7 +40,7 @@ Click `Set` to write the config to the card reader. It takes about 1 second to d
 
 ## Cards & Printing
 
-Once you have your Pi set up, you'll need RFID cards with a 125KHz proximity chip. You can get a set of 50 from [Brainstorm ID](https://brainstormidsupply.com) through [Amazon](https://amzn.to/2GHk9sZ). Or, order directly from their site.
+Once you have your Pi set up, you'll need RFID cards with a 125KHz proximity chip. You can get a set of 50 from [Brainstorm ID](https://brainstormidsupply.com) order directly from their site.
 
 In order to print the cards on a printer, you'll need a special tray. Not all printers support them. The makers of the printable cards, Brainstorm ID, [makes and sells trays](https://brainstormidsupply.com/inkjet-id-cards/printer-trays).
 
@@ -49,7 +49,7 @@ Be sure you get the right tray for your printer. If your printer doesn't support
 I'm personally using [this printer](https://amzn.to/2GLn13T) and [this tray](https://amzn.to/2GHkUSR).
 
 <div align="center">
-<a href="https://amzn.to/2GHk9sZ"><img src="https://images-na.ssl-images-amazon.com/images/I/61%2BAvp0mCBL._SL1024_.jpg" height="200px"></a> &nbsp;&nbsp;&nbsp;
+<a href="https://brainstormidsupply.com/50-inkjet-pvc-cards-125khz-proximity-tk4100-50-cards.html"><img src="https://brainstormidsupply.com/media/catalog/product/cache/1/image/1160x/9df78eab33525d08d6e5fb8d27136e95/i/j/ij-pvc-cards-125khz-proximity-photo-50-cards.jpg" height="200px"></a> &nbsp;&nbsp;&nbsp;
 <a href="https://amzn.to/2GHkUSR"><img src="https://images-na.ssl-images-amazon.com/images/I/61FzcmJTk1L._SL1498_.jpg" height="200px"></a> &nbsp;&nbsp;&nbsp;
 <a href="https://amzn.to/2GLn13T"><img src="https://images-na.ssl-images-amazon.com/images/I/61NNyBDr1gL._SL1000_.jpg" height="200px"></a>
 </div>
