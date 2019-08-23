@@ -12,7 +12,7 @@ class SonosAction extends Action {
       await this.clearQueue()
       await this.setShuffle(contentConfig.shuffle)
 
-      setTimeout(() => {
+      setTimeout(async () => {
         await this.roomRequest(this.card.uri)
         this.play()
       }, 200)
