@@ -53,7 +53,7 @@ sudo usermod -G docker pi
 
 Log out of your Pi and back in so your user has permissions to use Docker.
 
-### Run Container
+### Create Configuration
 
 To run the Docker container, you need to do a couple things first. Create a directory for it to run in, set up your configuration, and then run the command to load up the container.
 
@@ -65,7 +65,9 @@ mkdir config
 cd config
 ```
 
-After that, you should be in the `config` directory. Read the [standalone docs](#configure) to learn how to configure Magic Cards.
+After that, you should be in the `config` directory. Read the [standalone docs](#configure) to learn how to configure Magic Cards. While you read that, you may want to pull down the image because this takes a while (`docker pull jonmaddox/magic-cards`)
+
+### Run Container
 
 Once you've set up your configuration, navigate back to the `magic-cards` directory and load the Docker container:
 
@@ -81,9 +83,45 @@ docker run \
   jonmaddox/magic-cards
 ```
 
-This will download, build, and run the container and pass in your `config` directory so it knows how to run. You may need to edit the `device` param to properly map to the input device Magic Cards will be reading from for your card reader. You can read about that in the [standalone docs](#configure).
+This will download the image (if not already present), and create and run the container on port 5000 with the `config` directory you specified so it knows how to run. You may need to edit the `device` param to properly map to the input device Magic Cards will be reading from for your card reader. You can read about that in the [standalone docs](#configure).
 
 After that, the container will start up. It may take a little bit. It's just a little Raspberry Pi after all.
+
+### Logs 
+
+You can check the log using the [docker logs](https://docs.docker.com/engine/reference/commandline/logs/) command.
+
+```bash
+docker logs --timestamps --follow magic-cards
+```
+Once the application is started you should see something like this:
+
+```bash
+2019-08-09T18:55:01.580785656Z Starting Magic Cards...
+2019-08-09T18:55:21.713415891Z [0] $ cd server && yarn start
+2019-08-09T18:55:21.779221470Z [1] $ cd scanner && yarn start
+2019-08-09T18:55:28.418045886Z [0] $ node server.js
+2019-08-09T18:55:28.735063502Z [1] $ node scanner.js
+2019-08-09T18:55:35.730293035Z [0] Listening on port 5000
+```
+
+This is also usefull to check the ID of a new card.
+
+```bash
+2019-08-09T19:20:02.420027842Z [1] Read Card ID: 0015977352
+2019-08-09T19:20:02.429422388Z [1] Finding card...
+2019-08-09T19:20:02.437754692Z [1] Card not found.
+```
+
+### Update Container
+
+When a new version of the image is available at the [docker registry](https://hub.docker.com/r/jonmaddox/magic-cards), you'll need to update the image and restart the container.
+
+```bash
+docker stop magic-cards
+docker pull jonmaddox/magic-cards
+docker start magic-cards
+```
 
 ## Standalone Install
 
@@ -214,6 +252,8 @@ The `room` setting lets you assign your Magic Cards setup to a room. This value 
 The Spotify settings have to do with the [Quick Fill](cards.md#quick-fill) feature for creating cards. Magic Cards can populate your cards via Spotify URLs, but in order to do it, it needs to use the API. The API requires credentials to be used.
 
 This seems like a pain, but it's as easy as going to Spotify's [Developer Dashboard](https://beta.developer.spotify.com/dashboard/applications). Just log in, and click `Create a Client ID`. It will walk you through everything. When you're done, you'll have the Client ID and Client Secret that you need for Magic Cards. Enter them into your `config.json` and Magic Cards will then be able to populate your cards automatically with a URL.
+
+If you chose to run Magic Cards as a docker container, you can now go back to the docker specific [instructions](#run-container) for the final step.
 
 ## Start
 
