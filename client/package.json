@@ -23,7 +23,7 @@
     "react": "^16.2.0",
     "react-apollo": "^2.1.1",
     "react-app-rewired": "^1.5.0",
-    "react-dom": "^16.2.0",
+    "react-dom": "^16.3.3",
     "react-modal": "^3.3.2",
     "react-scripts": "1.1.1",
     "semantic-ui-css": "2.2.14",
