@@ -165,7 +165,7 @@ class CardEditor extends React.Component {
             type="search"
             label="Add content by URL"
             name="query"
-            placeholder="https://itunes.apple.com/us/album/moana-original-motion-picture-soundtrack-deluxe-edition/1168827405"
+            placeholder="https://music.apple.com/us/album/moana-original-motion-picture-soundtrack-deluxe-edition/1168827405"
             onChange={this.handleUrl}
           />
         </Form>
