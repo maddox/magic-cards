@@ -4,7 +4,7 @@ export default class Metadata {
   static async fetchMetadata(url) {
     const sourceURL = new URL(url)
 
-    if (sourceURL.host === 'itunes.apple.com') {
+    if (sourceURL.host === 'music.apple.com') {
       return Metadata.fromItunes(sourceURL)
     } else if (sourceURL.host === 'open.spotify.com') {
       return Metadata.fromSpotify(sourceURL)
