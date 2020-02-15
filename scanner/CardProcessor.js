@@ -4,6 +4,7 @@ const SonosAction = require('./actions/SonosAction')
 const HomeAssistantAction = require('./actions/HomeAssistantAction')
 const ChannelsAction = require('./actions/ChannelsAction')
 const ScriptAction = require('./actions/ScriptAction')
+const NetflixAction = require('./actions/NetflixAction')
 
 class CardProcessor {
   process(code) {
@@ -49,6 +50,8 @@ class CardProcessor {
       actionProcessor = new ChannelsAction(card, action)
     } else if (action.type === 'script') {
       actionProcessor = new ScriptAction(card, action)
+    } else if (action.type === 'chromecast-netflix') {
+      actionProcessor = new NetflixAction(card, action)
     }
 
     if (actionProcessor) {
