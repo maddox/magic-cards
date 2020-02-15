@@ -53,7 +53,7 @@ class CardEditor extends React.Component {
     const url = event.target.value
 
     Metadata.fetchMetadata(url).then(metadata => {
-      if (action && action.type !== 'sonos') {
+      if (action && action.type !== 'sonos' && action.type !== 'chromecast-netflix') {
         delete metadata.uri
       }
       this.setState(metadata)
