@@ -16,3 +16,7 @@ rm -Rf server/public
 mkdir -p server/public
 
 cp -a client/build/. server/public/
+
+python3.6 -m venv .virtualenv
+.virtualenv/bin/python -m pip install -r pip-requirements.txt
+export PATH=.virtualenv/bin:$PATH
