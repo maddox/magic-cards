@@ -1,12 +1,13 @@
 var exec = require('child_process').exec
 const Action = require('./Action')
+const pythonExtensionsPath = __dirname + '/../../python_extensions'
 
 class MediaURLAction extends Action {
   process() {
     const envVars = this.envVars()
     const scriptPath =
-      __dirname +
-      '/scripts/chromecast.py --chromecast_ip ' +
+      pythonExtensionsPath +
+      '/chromecast.py --chromecast_ip ' +
       this.config.chromecast_name +
       ' ' +
       this.card.uri
