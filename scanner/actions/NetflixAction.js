@@ -16,4 +16,4 @@ class NetflixAction extends Action {
   }
 }
 
-module.exports = ScriptAction
+module.exports = NetflixAction
