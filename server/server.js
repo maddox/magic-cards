@@ -95,4 +95,17 @@ app.get('/metadata/spotify', (req, res) => {
     })
 })
 
+app.get('/dlna-media', (req, res) => {
+  const scriptPath = __dirname + '/lib/scripts/dlna.py --dlnaserver_ip ' + config.dlnaserver_ip
+  console.log(`Running ${scriptPath}`)
+  exec(scriptPath, function(error, stdout, stderr) {
+    if (error || stderr) {
+      console.log(error)
+      res.send('error')
+    } else {
+      res.send(JSON.parse(stdout))
+    }
+  })
+})
+
 app.listen(port, () => console.log(`Listening on port ${port}`))

@@ -113,4 +113,12 @@ export default class Metadata {
     uri = 'https://' + sourceURL.host + sourceURL.pathname.replace('/Kids', '')
     return {type: 'movie', uri: uri}
   }
+
+  static async fromDLNA() {
+    let dlna_items = await fetch('/dlna-media').then(results => {
+      return results.json()
+    })
+    console.log(dlna_items)
+    return dlna_items
+  }
 }

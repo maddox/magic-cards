@@ -1,2 +1,3 @@
 pychromecast
 https://github.com/dtmilano/AndroidViewClient/archive/py2to3.zip
+upnpclient
