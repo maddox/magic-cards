@@ -5,6 +5,7 @@ const HomeAssistantAction = require('./actions/HomeAssistantAction')
 const ChannelsAction = require('./actions/ChannelsAction')
 const ScriptAction = require('./actions/ScriptAction')
 const NetflixAction = require('./actions/NetflixAction')
+const MediaURLAction = require('./actions/MediaURLAction')
 
 class CardProcessor {
   process(code) {
@@ -52,6 +53,8 @@ class CardProcessor {
       actionProcessor = new ScriptAction(card, action)
     } else if (action.type === 'chromecast-netflix') {
       actionProcessor = new NetflixAction(card, action)
+    } else if (action.type === 'chromecast-mediaurl') {
+      actionProcessor = new MediaURLAction(card, action)
     }
 
     if (actionProcessor) {
