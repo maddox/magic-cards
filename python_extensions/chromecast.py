@@ -3,6 +3,7 @@
 
 import pychromecast
 from pychromecast.controllers.youtube import YouTubeController
+from androidviewclient import Netflix
 
 NETFLIX_APP_ID = 'CA5E8412'
 
@@ -56,6 +57,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Chromecast Mediaplayer")
     parser.add_argument("--chromecast_ip", help="Chromecast IP", required=True)
     parser.add_argument("--app", help="App name", default='mediacontroller', required=False)
+    parser.add_argument("--connect_ip", help="IP for remote adb connection", required=False)
     parser.add_argument(
         "options", metavar="option", type=str, nargs="+", help="Media url data (one or more)",
     )
@@ -64,7 +66,7 @@ if __name__ == "__main__":
     sys.argv = [sys.argv[0]]
     if len(args["options"]) > 1:
         print(
-            "Warning: Chromecast currenlty only takes a single url argument: Ignored {}".format(
+            "Warning: Chromecast currently only takes a single url argument: Ignored {}".format(
                 ", ".join(args["options"][1:])
             )
         )
@@ -78,3 +80,9 @@ if __name__ == "__main__":
         yt = YouTubeController()
         chromecast.register_handler(yt)
         yt.play_video(args['options'][0])
+    elif args["app"] == "netflix":
+        # Start the netflix app, just for show (otherwise chromecast dashboard would load here
+        # while we wait: Bad UI)
+        chromecast.start_app('netflix')
+        netflix = Netflix(chromecast.get_name(), connect_ip=args["connect_ip"] or None)
+        netflix.main(args["options"][0])

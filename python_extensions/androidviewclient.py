@@ -93,37 +93,3 @@ class Netflix(AndroidViewBase):
             self.vc.findViewById("com.netflix.mediaclient:id/video_img").touch()
 
         loop_until(_play)
-
-
-if __name__ == "__main__":
-    import argparse
-    import sys
-
-    parser = argparse.ArgumentParser(description="AndroidViewClient")
-    parser.add_argument("--type", help="Action type", required=True)
-    parser.add_argument("--chromecast_ip", help="Chromecast IP", required=True)
-    parser.add_argument("--connect_ip", help="IP for remote adb connection", required=False)
-    parser.add_argument(
-        "options", metavar="option", type=str, nargs="+", help="Action data (one or more)",
-    )
-    args = vars(parser.parse_args())
-    # Clear args for any extra checks (There is one in android/viewclient.py", line 2796)
-    sys.argv = [sys.argv[0]]
-
-    chromecast = Chromecast(args['chromecast_ip'])
-    chromecast.stop()
-
-    if args["type"].lower() == "netflix":
-        if len(args["options"]) > 1:
-            print(
-                "Warning: Netflix only takes a single argument: Ingored {}".format(
-                    ", ".join(args["options"][1:])
-                )
-            )
-        # Start the netflix app, just for show (otherwise chromecast dashboard would load here
-        # while we wait: Bad UI)
-        chromecast.start_app('netflix')
-        netflix = Netflix(chromecast.get_name(), connect_ip=args["connect_ip"] or None)
-        netflix.main(args["options"][0])
-    else:
-        print("Type {} is not implemented".format(args["type"]))
