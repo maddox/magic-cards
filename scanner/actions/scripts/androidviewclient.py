@@ -13,6 +13,9 @@ from chromecast import Chromecast
 
 
 def loop_until(func, seconds=15, nofail=False):
+    """
+    Helper method for try-until behaviour
+    """
     start = time()
     firstrun = True
     while True:
@@ -34,12 +37,12 @@ def loop_until(func, seconds=15, nofail=False):
         firstrun = False
 
 
-class Netflix:
+class AndroidViewBase:
     def __init__(self, chromecast_name, connect_ip=None):
         self.chromecast_name = chromecast_name
         self.connect_ip = connect_ip
 
-    def cast(self, netflix_url):
+    def main(self, *args, **kwargs):
         if self.connect_ip:
             subprocess.check_call(["adb", "connect", self.connect_ip])
 
@@ -55,30 +58,41 @@ class Netflix:
             "useuiautomatorhelper": False,
             "debug": {},
         }
-        vc = ViewClient(device, serialno, **kwargs2)
-        vc.device.shell("input keyevent KEYCODE_WAKEUP")
-        vc.device.shell("input keyevent KEYCODE_WAKEUP")
+        self.vc = ViewClient(device, serialno, **kwargs2)
+        self.vc.device.shell("input keyevent KEYCODE_WAKEUP")
+        self.vc.device.shell("input keyevent KEYCODE_WAKEUP")
 
-        vc.device.shell("am force-stop com.netflix.mediaclient")
-        vc.device.shell("am start -a android.intent.action.VIEW -d {}".format(netflix_url))
+        self.run(*args, **kwargs)
 
-        # NOTE: Netflix app should be turned off before running this script!
+        self.vc.device.shell("input keyevent KEYCODE_HOME")
+        self.vc.device.shell("input keyevent KEYCODE_SLEEP")
+
+    def run(self, *args, **kwargs):
+        """
+        Override this to get a basic script running, with the screen woken and
+        going to sleep after finished,
+        """
+        raise NotImplementedError()
+
+
+class Netflix(AndroidViewBase):
+    def run(self, netflix_url):
+        self.vc.device.shell("am force-stop com.netflix.mediaclient")
+        self.vc.device.shell("am start -a android.intent.action.VIEW -d {}".format(netflix_url))
+
         def _cast(**kwargs):
-            vc.dump(window="-1", sleep=1)
-            vc.findViewById("com.netflix.mediaclient:id/ab_menu_cast_item").touch()
-            vc.dump(window="-1", sleep=1)
-            vc.findViewWithTextOrRaise(re.compile(self.chromecast_name)).touch()
+            self.vc.dump(window="-1", sleep=1)
+            self.vc.findViewById("com.netflix.mediaclient:id/ab_menu_cast_item").touch()
+            self.vc.dump(window="-1", sleep=1)
+            self.vc.findViewWithTextOrRaise(re.compile(self.chromecast_name)).touch()
 
         loop_until(_cast)
 
         def _play(**kwargs):
-            vc.dump(window="-1", sleep=1)
-            vc.findViewById("com.netflix.mediaclient:id/video_img").touch()
+            self.vc.dump(window="-1", sleep=1)
+            self.vc.findViewById("com.netflix.mediaclient:id/video_img").touch()
 
         loop_until(_play)
-
-        vc.device.shell("input keyevent KEYCODE_HOME")
-        vc.device.shell("input keyevent KEYCODE_SLEEP")
 
 
 if __name__ == "__main__":
@@ -110,6 +124,6 @@ if __name__ == "__main__":
         # while we wait: Bad UI)
         chromecast.start_app('netflix')
         netflix = Netflix(chromecast.get_name(), connect_ip=args["connect_ip"] or None)
-        netflix.cast(args["options"][0])
+        netflix.main(args["options"][0])
     else:
         print("Type {} is not implemented".format(args["type"]))
