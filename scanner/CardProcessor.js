@@ -8,6 +8,7 @@ const NetflixAction = require('./actions/NetflixAction')
 const MediaURLAction = require('./actions/MediaURLAction')
 const DLNAAction = require('./actions/DLNAAction')
 const YoutubeAction = require('./actions/YoutubeAction')
+const YLEAreenaAction = require('./actions/YLEAreenaAction')
 
 class CardProcessor {
   process(code) {
@@ -61,6 +62,8 @@ class CardProcessor {
       actionProcessor = new DLNAAction(card, action)
     } else if (action.type === 'chromecast-youtube') {
       actionProcessor = new YoutubeAction(card, action)
+    } else if (action.type === 'chromecast-areena') {
+      actionProcessor = new YLEAreenaAction(card, action)
     }
 
     if (actionProcessor) {

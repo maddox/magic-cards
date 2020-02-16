@@ -4,8 +4,10 @@
 import pychromecast
 from pychromecast.controllers.youtube import YouTubeController
 from androidviewclient import Netflix
+from areena import Areena
 
 NETFLIX_APP_ID = 'CA5E8412'
+AREENA_APP_ID = 'A9BCCB7C'
 
 
 class Chromecast():
@@ -25,6 +27,8 @@ class Chromecast():
     def start_app(self, app):
         if app.lower() == 'netflix':
             self.cast.start_app(NETFLIX_APP_ID)
+        elif app.lower() == 'areena':
+            self.cast.start_app(AREENA_APP_ID)
         else:
             raise NotImplementedError()
 
@@ -57,10 +61,13 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Chromecast Mediaplayer")
     parser.add_argument("--chromecast_ip", help="Chromecast IP", required=True)
     parser.add_argument("--app", help="App name", default='mediacontroller', required=False)
-    parser.add_argument("--connect_ip", help="IP for remote adb connection", required=False)
     parser.add_argument(
         "options", metavar="option", type=str, nargs="+", help="Media url data (one or more)",
     )
+    # Netflix
+    parser.add_argument("--connect_ip", help="IP for remote adb connection", required=False)
+    # Areena
+    parser.add_argument("--areena_key", help="Areena API Key", required=False)
     args = vars(parser.parse_args())
     # Clear args for any extra checks (There is one in android/viewclient.py", line 2796)
     sys.argv = [sys.argv[0]]
@@ -80,6 +87,19 @@ if __name__ == "__main__":
         yt = YouTubeController()
         chromecast.register_handler(yt)
         yt.play_video(args['options'][0])
+    elif args['app'] == 'areena':
+        # Start the areena app, just for show
+        chromecast.start_app('areena')
+        areena = Areena(args["areena_key"])
+        uri = args['options'][0]
+        flag = uri.split(':')[0]
+        if flag == 'latest':
+            url = areena.get_series_url_latest(''.join(uri.split(':')[1:]))
+        elif flag == 'random':
+            url = areena.get_series_url_random(''.join(uri.split(':')[1:]))
+        else:
+            url = areena.get_series_url_latest(uri)
+        chromecast.play_media(url)
     elif args["app"] == "netflix":
         # Start the netflix app, just for show (otherwise chromecast dashboard would load here
         # while we wait: Bad UI)

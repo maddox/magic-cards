@@ -81,6 +81,11 @@ Magic Cards comes with an example actions configuration in `/config/actions.exam
   "Youtube": {
     "type": "chromecast-youtube",
     "chromecast_ip": "192.168.100.8"
+  },
+  "YLE Areena": {
+    "type": "chromecast-areena",
+    "chromecast_ip": "192.168.100.8",
+    "areena_key": ""
   }
 }
 ```
