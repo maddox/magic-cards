@@ -2,7 +2,7 @@ var exec = require('child_process').exec
 const Action = require('./Action')
 const pythonExtensionsPath = __dirname + '/../../python_extensions'
 
-class MediaURLAction extends Action {
+class YoutubeAction extends Action {
   process() {
     const envVars = this.envVars()
     const scriptPath =
@@ -17,4 +17,4 @@ class MediaURLAction extends Action {
   }
 }
 
-module.exports = MediaURLAction
+module.exports = YoutubeAction
