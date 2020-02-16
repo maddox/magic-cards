@@ -7,7 +7,7 @@ class MediaURLAction extends Action {
     const envVars = this.envVars()
     const scriptPath =
       pythonExtensionsPath +
-      '/chromecast.py --chromecast_ip ' +
+      '/chromecast.py --type youtube --chromecast_ip ' +
       this.config.chromecast_ip +
       ' ' +
       this.card.uri

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import pychromecast
+from pychromecast.controllers.youtube import YouTubeController
 
 NETFLIX_APP_ID = 'CA5E8412'
 
@@ -54,22 +55,26 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Chromecast Mediaplayer")
     parser.add_argument("--chromecast_ip", help="Chromecast IP", required=True)
+    parser.add_argument("--app", help="App name", default='mediacontroller', required=False)
     parser.add_argument(
         "options", metavar="option", type=str, nargs="+", help="Media url data (one or more)",
     )
     args = vars(parser.parse_args())
     # Clear args for any extra checks (There is one in android/viewclient.py", line 2796)
     sys.argv = [sys.argv[0]]
-
     if len(args["options"]) > 1:
         print(
-            "Warning: Mediaplayer only takes a single url argument: Ignored {}".format(
+            "Warning: Chromecast currenlty only takes a single url argument: Ignored {}".format(
                 ", ".join(args["options"][1:])
             )
         )
-
     chromecast = Chromecast(args['chromecast_ip'])
-    if args['options'][0] == 'stop':
-        chromecast.stop()
-    else:
-        chromecast.play_media(args['options'][0])
+    if args['app'] == 'mediaplayer':
+        if args['options'][0] == 'stop':
+            chromecast.stop()
+        else:
+            chromecast.play_media(args['options'][0])
+    elif args['app'] == 'youtube':
+        yt = YouTubeController()
+        chromecast.register_handler(yt)
+        yt.play_video(args['options'][0])
