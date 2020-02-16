@@ -67,7 +67,7 @@ Magic Cards comes with an example actions configuration in `/config/actions.exam
   "Netflix": {
     "type": "chromecast-netflix",
     "adb_connect": "192.168.100.13",
-    "chromecast_name": "Living Room Chromecast"
+    "chromecast_ip": "192.168.100.8"
   }
 }
 ```

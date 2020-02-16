@@ -6,8 +6,8 @@ class NetflixAction extends Action {
     const envVars = this.envVars()
     const scriptPath =
       __dirname +
-      '/scripts/androidviewclient.py --type netflix --chromecast_name ' +
-      this.config.chromecast_name +
+      '/scripts/androidviewclient.py --type netflix --chromecast_ip ' +
+      this.config.chromecast_ip +
       ' ' +
       this.card.uri
     exec(scriptPath, {env: envVars}, function(error, stdout, stderr) {
