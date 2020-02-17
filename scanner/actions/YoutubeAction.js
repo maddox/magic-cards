@@ -8,7 +8,7 @@ class YoutubeAction extends Action {
     const envVars = this.envVars()
     const scriptPath =
       pythonExtensionsPath +
-      '/chromecast.py --type youtube --chromecast_ip ' +
+      '/chromecast.py --app youtube --chromecast_ip ' +
       this.config.chromecast_ip +
       ' ' +
       this.card.uri

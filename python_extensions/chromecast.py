@@ -54,6 +54,9 @@ class Chromecast():
         """
         self.cast.play_media(url, content_type=content_type, **kwargs)
 
+    def register_handler(self, *args, **kwargs):
+        self.cast.register_handler(*args, **kwargs)
+
 
 class MockChromecast(Chromecast):
     """
@@ -78,6 +81,9 @@ class MockChromecast(Chromecast):
 
     def play_media(self, url, content_type='video/mp4', **kwargs):
         print("MockChromecast: play_media {}".format(url))
+
+    def register_handler(self, handler, *args, **kwargs):
+        pass
 
 
 if __name__ == "__main__":
