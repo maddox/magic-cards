@@ -1,11 +1,14 @@
 var exec = require('child_process').exec
 const Action = require('./Action')
-const pythonExtensionsPath = __dirname + '/../../python_extensions'
+const pythonExtensionsPath =
+  __dirname + '/../../.virtualenv/bin/python ' + __dirname + '/../../python_extensions'
 
 class NetflixAction extends Action {
   process() {
     const envVars = this.envVars()
-    const connectIP = this.config.adb_connect ? ' --connect_ip ' + this.config.adb_connect : ''
+    const connectIP = this.config.adb_connect
+      ? ' --connect_ip ' + this.config.adb_connect + ' '
+      : ''
     const scriptPath =
       pythonExtensionsPath +
       '/chromecast.py --app netflix --chromecast_ip ' +

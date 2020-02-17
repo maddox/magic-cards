@@ -9,8 +9,6 @@ from time import sleep, time
 
 from com.dtmilano.android.viewclient import ViewClient
 
-from chromecast import Chromecast
-
 
 def loop_until(func, seconds=15, nofail=False):
     """

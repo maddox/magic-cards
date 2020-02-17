@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import pychromecast
+import random
 from pychromecast.controllers.youtube import YouTubeController
 from androidviewclient import Netflix
 from areena import Areena
@@ -54,6 +55,31 @@ class Chromecast():
         self.cast.play_media(url, content_type=content_type, **kwargs)
 
 
+class MockChromecast(Chromecast):
+    """
+    When you're developing and don't really want to cast
+    """
+    def __init__(self, chromecast_ip):
+        pass
+
+    def stop(self):
+        print("MockChromecast: stop()")
+
+    def get_name(self):
+        return "Mock Chromecast"
+
+    def start_app(self, app):
+        if app.lower() == 'netflix':
+            print("MockChromecast: start_app {}".format(app))
+        elif app.lower() == 'areena':
+            print("MockChromecast: start_app {}".format(app))
+        else:
+            raise NotImplementedError()
+
+    def play_media(self, url, content_type='video/mp4', **kwargs):
+        print("MockChromecast: play_media {}".format(url))
+
+
 if __name__ == "__main__":
     import argparse
     import sys
@@ -71,17 +97,28 @@ if __name__ == "__main__":
     args = vars(parser.parse_args())
     # Clear args for any extra checks (There is one in android/viewclient.py", line 2796)
     sys.argv = [sys.argv[0]]
-    if len(args["options"]) > 1:
+    if args['app'] != 'mediaplayer' and len(args["options"]) > 1:
         print(
             "Warning: Chromecast currently only takes a single url argument: Ignored {}".format(
                 ", ".join(args["options"][1:])
             )
         )
-    chromecast = Chromecast(args['chromecast_ip'])
+    if args['chromecast_ip'] == 'mock_chromecast':
+        chromecast = MockChromecast('mock_chromecast')
+    else:
+        chromecast = Chromecast(args['chromecast_ip'])
     if args['app'] == 'mediaplayer':
         if args['options'][0] == 'stop':
             chromecast.stop()
         else:
+            first = args['options'][0]
+            flag = first.split(':')[0]
+            if flag == 'random':
+                all_urls = [':'.join(first.split(':')[1:])] + args['options'][1:]
+                url = all_urls[random.randrange(0, len(all_urls) - 1)]
+            else:
+                url = first
+
             chromecast.play_media(args['options'][0])
     elif args['app'] == 'youtube':
         yt = YouTubeController()

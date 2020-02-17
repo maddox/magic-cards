@@ -144,7 +144,7 @@ class CardEditor extends React.Component {
     const ret = Object.entries(this.state.dlnaOptions || {}).map(function(option, i) {
       return {
         key: option[0],
-        value: option[0] + ':' + option[1],
+        value: option[0],
         text: option[0],
       }
     })
@@ -154,7 +154,7 @@ class CardEditor extends React.Component {
 
   handleDLNAChange = (event, {value}) => {
     event.preventDefault()
-    this.setState({title: value.split(':')[0], uri: value, type: 'movie'})
+    this.setState({title: value, uri: ':' + value, type: 'movie'})
   }
 
   render() {
