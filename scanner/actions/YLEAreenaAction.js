@@ -5,14 +5,14 @@ const pythonExtensionsPath =
 
 class YLEAreenaAction extends Action {
   process() {
-    const envVars = this.envVars()
+    const envVars = Object.assign(this.envVars(), {PATH: __dirname + '/../../.virtualenv/bin'})
     const scriptPath =
       pythonExtensionsPath +
       '/chromecast.py --app areena --chromecast_ip ' +
       this.config.chromecast_ip +
-      ' --areena_key' +
+      ' --areena_key "' +
       this.config.areena_key +
-      ' ' +
+      '" ' +
       this.card.uri
     exec(scriptPath, {env: envVars}, function(error, stdout, stderr) {
       console.log(stdout, stderr, error)
