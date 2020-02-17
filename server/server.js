@@ -5,7 +5,8 @@ const ejs = require('ejs')
 const SpotifyWebApi = require('spotify-web-api-node')
 
 const config = require(__dirname + '/../config/config.json')
-const pythonExtensionsPath = __dirname + '/../python_extensions'
+const pythonExtensionsPath =
+  __dirname + '/../.virtualenv/bin/python ' + __dirname + '/../python_extensions'
 
 // Create the api object with the credentials
 var spotifyApi = new SpotifyWebApi({

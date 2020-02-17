@@ -1,6 +1,7 @@
 var exec = require('child_process').exec
 const Action = require('./Action')
-const pythonExtensionsPath = __dirname + '/../../python_extensions'
+const pythonExtensionsPath =
+  __dirname + '/../../.virtualenv/bin/python ' + __dirname + '/../../python_extensions'
 
 class MediaURLAction extends Action {
   process() {
