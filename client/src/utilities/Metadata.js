@@ -8,6 +8,8 @@ export default class Metadata {
       return Metadata.fromItunes(sourceURL)
     } else if (sourceURL.host === 'open.spotify.com') {
       return Metadata.fromSpotify(sourceURL)
+    } else if (sourceURL.host === 'www.netflix.com') {
+      return Metadata.fromNetflix(sourceURL)
     }
   }
 
@@ -104,5 +106,19 @@ export default class Metadata {
 
       return {type: type, artURL: artURL, title: title, subtitle: subtitle}
     }
+  }
+
+  static async fromNetflix(sourceURL) {
+    let uri
+    uri = 'https://' + sourceURL.host + sourceURL.pathname.replace('/Kids', '')
+    return {type: 'movie', uri: uri}
+  }
+
+  static async fromDLNA() {
+    let dlna_items = await fetch('/dlna-media').then(results => {
+      return results.json()
+    })
+    console.log(dlna_items)
+    return dlna_items
   }
 }
