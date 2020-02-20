@@ -3,6 +3,7 @@
 
 import pychromecast
 import random
+from time import sleep
 from pychromecast.controllers.youtube import YouTubeController
 from androidviewclient import Netflix
 from areena import Areena
@@ -57,6 +58,13 @@ class Chromecast():
         """
         print('playing media {}'.format(url))
         self.cast.play_media(url, content_type=content_type, **kwargs)
+        # Try a few times, sometimes the media simply refuses to play the first time.
+        sleep(2)
+        if self.cast.media_controller.status.player_state != 'PLAYING':
+            self.cast.play_media(url, content_type=content_type, **kwargs)
+        sleep(2)
+        if self.cast.media_controller.status.player_state != 'PLAYING':
+            self.cast.play_media(url, content_type=content_type, **kwargs)
 
     def register_handler(self, *args, **kwargs):
         self.cast.register_handler(*args, **kwargs)
@@ -141,7 +149,6 @@ if __name__ == "__main__":
         chromecast.register_handler(yt)
         yt.play_video(args['options'][0])
     elif args['app'] == 'areena':
-        # Start the areena app, just for show
         chromecast.stop()
         areena = Areena(args["areena_key"])
         uri = args['options'][0]
