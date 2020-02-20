@@ -139,12 +139,17 @@ if __name__ == "__main__":
         areena = Areena(args["areena_key"])
         uri = args['options'][0]
         flag = uri.split(':')[0]
+        the_rest = ''.join(uri.split(':')[1:])
+        # No latest or random flag = series
         if flag == 'latest':
-            url = areena.get_series_url_latest(''.join(uri.split(':')[1:]))
+            url = areena.get_series_url_latest(the_rest)
         elif flag == 'random':
-            url = areena.get_series_url_random(''.join(uri.split(':')[1:]))
+            url = areena.get_series_url_random(the_rest)
+            # No flag or empty flag = single program
+        elif flag == '':
+            url = areena.get_program_url(the_rest)
         else:
-            url = areena.get_series_url_latest(uri)
+            url = areena.get_program_url(uri)
         chromecast.play_media(url)
     elif args["app"] == "netflix":
         # Start the netflix app, just for show (otherwise chromecast dashboard would load here
