@@ -5,7 +5,7 @@ const pythonExtensionsPath =
 
 class NetflixAction extends Action {
   process() {
-    const envVars = this.envVars()
+    const envVars = Object.assign(this.envVars(), {PATH: '/usr/bin'})
     const connectIP = this.config.adb_connect
       ? ' --connect_ip ' + this.config.adb_connect + ' '
       : ''
