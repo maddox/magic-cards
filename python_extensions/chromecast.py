@@ -168,6 +168,7 @@ if __name__ == "__main__":
             url = areena.get_program_url(uri)
         chromecast.play_media(url)
     elif args["app"] == "netflix":
+        chromecast.quit()
         # Start the netflix app, just for show (otherwise chromecast dashboard would load here
         # while we wait: Bad UI)
         chromecast.start_app('netflix')
