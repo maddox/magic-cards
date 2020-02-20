@@ -24,6 +24,8 @@ class Chromecast():
         self.cast.quit_app()
 
     def stop(self):
+        if self.cast.media_controller.status.player_state == 'UNKNOWN':
+            self.quit()
         self.cast.media_controller.stop()
 
     def get_name(self):
