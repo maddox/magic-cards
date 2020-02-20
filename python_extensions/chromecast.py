@@ -19,8 +19,11 @@ class Chromecast():
         self.cast = pychromecast.Chromecast(chromecast_ip)
         self.cast.wait()
 
-    def stop(self):
+    def quit(self):
         self.cast.quit_app()
+
+    def stop(self):
+        self.cast.media_controller.stop()
 
     def get_name(self):
         return self.cast.device.friendly_name
@@ -52,6 +55,7 @@ class Chromecast():
             GenericMediaMetadata, MovieMediaMetadata, TvShowMediaMetadata,
             MusicTrackMediaMetadata, PhotoMediaMetadata.
         """
+        print('playing media {}'.format(url))
         self.cast.play_media(url, content_type=content_type, **kwargs)
 
     def register_handler(self, *args, **kwargs):
@@ -64,6 +68,9 @@ class MockChromecast(Chromecast):
     """
     def __init__(self, chromecast_ip):
         pass
+
+    def quit(self):
+        print("MockChromecast: quit()")
 
     def stop(self):
         print("MockChromecast: stop()")
@@ -135,7 +142,7 @@ if __name__ == "__main__":
         yt.play_video(args['options'][0])
     elif args['app'] == 'areena':
         # Start the areena app, just for show
-        chromecast.start_app('areena')
+        chromecast.stop()
         areena = Areena(args["areena_key"])
         uri = args['options'][0]
         flag = uri.split(':')[0]
