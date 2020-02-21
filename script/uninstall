@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# script/install: Set up to run with systemd
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "Stopping Magic Cards..."
+
+sudo systemctl stop magiccards-server.service
+sudo systemctl stop magiccards-scanner.service
+
+echo "Removing Magic Cards starting on boot."
+
+sudo systemctl disable magiccards-server.service > /dev/null 2>&1
+sudo systemctl disable magiccards-scanner.service > /dev/null 2>&1
+
+sudo rm /etc/systemd/system/magiccards-server.service
+sudo rm /etc/systemd/system/magiccards-scanner.service
+sudo systemctl daemon-reload
