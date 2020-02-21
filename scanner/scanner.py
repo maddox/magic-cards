@@ -23,7 +23,20 @@ if "chromecast_ip" in config:
         chromecast = Chromecast(config["chromecast_ip"])
 
 
-def handle_card(card):
+def handle_code(code):
+    found = False
+    with open(CURRENT_DIR + "/../config/cards.json", "r") as f:
+        cards = json.load(f)
+
+    for card in cards:
+        if card["code"] == code:
+            found = True
+            break
+
+    if not found:
+        print("Card not found.")
+        return
+
     with open(CURRENT_DIR + "/../config/actions.json", "r") as f:
         actions = json.load(f)
 
@@ -50,28 +63,28 @@ def handle_card(card):
         action_processor.process()
 
 
-print("Starting reader: {}".format(config["input_device"]))
-while True:
-    try:
-        with Reader("/dev/input/{}".format(config["input_device"])) as reader:
-            line = reader.read()
-            print("Read Card ID: {}".format(line))
-            found = False
+if __name__ == "__main__":
+    import argparse
 
-            with open(CURRENT_DIR + "/../config/cards.json", "r") as f:
-                cards = json.load(f)
+    parser = argparse.ArgumentParser(description="Scanner")
+    parser.add_argument("--code", help="Code to input, disable scanner", required=False)
 
-            for card in cards:
-                if card["code"] == line:
-                    found = True
-                    handle_card(card)
+    args = vars(parser.parse_args())
 
-            if not found:
-                print("Card not found.")
-    except KeyboardInterrupt:
-        break
-    except FileNotFoundError:
-        raise
-    except Exception as e:
-        traceback.print_exc()
-        continue
+    if args.get('code', ''):
+        handle_code(args['code'])
+    else:
+        print("Starting reader: {}".format(config["input_device"]))
+        while True:
+            try:
+                with Reader("/dev/input/{}".format(config["input_device"])) as reader:
+                    line = reader.read()
+                    print("Read Card ID: {}".format(line))
+                    handle_code(line)
+            except KeyboardInterrupt:
+                break
+            except FileNotFoundError:
+                raise
+            except Exception:
+                traceback.print_exc()
+                continue

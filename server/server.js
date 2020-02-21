@@ -6,6 +6,7 @@ const SpotifyWebApi = require('spotify-web-api-node')
 
 const config = require(__dirname + '/../config/config.json')
 const dlnaPath = __dirname + '/../.virtualenv/bin/python ' + __dirname + '/../scanner/utils/dlna.py'
+const scannerPath = __dirname + '/../.virtualenv/bin/python ' + __dirname + '/../scanner/scanner.py'
 
 // Create the api object with the credentials
 var spotifyApi = new SpotifyWebApi({
@@ -41,7 +42,7 @@ app.get('/card/:id', (req, res) => {
 })
 
 app.post('/test/:code', (req, res) => {
-  const command = `node ${__dirname}/../scanner/testCard.js ${req.params.code}`
+  const command = `${scannerPath} --code ${req.params.code}`
   exec(command, function(error, stdout, stderr) {
     console.log(stdout, stderr, error)
   })
