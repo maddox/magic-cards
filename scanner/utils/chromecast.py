@@ -1,12 +1,14 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import pychromecast
 import random
 from time import sleep
+
+import pychromecast
 from pychromecast.controllers.youtube import YouTubeController
-from androidviewclient import Netflix
-from areena import Areena
+
+from .androidviewclient import Netflix
+from .areena import Areena
 
 NETFLIX_APP_ID = 'CA5E8412'
 AREENA_APP_ID = 'A9BCCB7C'

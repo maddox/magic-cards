@@ -5,8 +5,7 @@ const ejs = require('ejs')
 const SpotifyWebApi = require('spotify-web-api-node')
 
 const config = require(__dirname + '/../config/config.json')
-const pythonExtensionsPath =
-  __dirname + '/../.virtualenv/bin/python ' + __dirname + '/../python_extensions'
+const dlnaPath = __dirname + '/../.virtualenv/bin/python ' + __dirname + '/../scanner/utils/dlna.py'
 
 // Create the api object with the credentials
 var spotifyApi = new SpotifyWebApi({
@@ -98,7 +97,7 @@ app.get('/metadata/spotify', (req, res) => {
 })
 
 app.get('/dlna-media', (req, res) => {
-  const scriptPath = pythonExtensionsPath + '/dlna.py --dlnaserver_ip ' + config.dlnaserver_ip
+  const scriptPath = dlnaPath + ' --dlnaserver_ip ' + config.dlnaserver_ip
   console.log(`Running ${scriptPath}`)
   exec(scriptPath, function(error, stdout, stderr) {
     if (error || stderr) {
