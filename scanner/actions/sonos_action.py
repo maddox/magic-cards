@@ -2,7 +2,7 @@ import os
 import base64
 import requests
 import traceback
-import urllib
+import urllib.parse
 
 from time import sleep
 
@@ -50,7 +50,7 @@ class SonosAction(Action):
         return self.room_request("SetAVTransportURI/x-rincon-queue:{}%230".format(zone["uuid"]))
 
     def room_request(self, path):
-        room = urllib.quote(self.config["room"])
+        room = urllib.parse.quote(self.config["room"])
         self.request("{}/{}".format(room, path))
 
     def request(self, path):
