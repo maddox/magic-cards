@@ -27,6 +27,10 @@ Protip: buy a second scanner to keep plugged into your computer so you can just 
 
 ## Programming the Reader
 
+***
+Note from Eerovil: I didn't need to do this, the reader did work just fine without programming.
+***
+
 One little gotcha is that your RFID card reader will be delivered in an incompatible mode. You're going to need to reprogram it to output in a different format.
 
 You will need a Windows computer to do this. VMWare or Parallels won't work. They see the reader as a normal keyboard and not a programmable USB device. (Open an issue if you do get this to work somehow.)
