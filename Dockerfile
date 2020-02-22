@@ -1,6 +1,5 @@
 FROM balenalib/raspberry-pi-alpine-node:12-run
 
-RUN npm install yarn -g
 RUN npm install concurrently -g
 
 # Create app directory
