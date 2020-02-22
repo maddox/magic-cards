@@ -268,6 +268,20 @@ All custom scripts need to be placed in the `/config` directory.
 
 When run, your script will receive all of the properties of your card as environment variables. You can use them like `$CARD_TITLE`, `$CARD_URI`, etc.
 
+## Netflix
+
+For cassting Netflix, you'll need
+* An Android phone (preferably unused) with Netflix installed
+* adb, install by running `sudo apt-get install android-tools-adb`
+
+First time setup
+
+1. Connect your phone to the Raspi through USB.
+2. Enable Developer options (Tap "build number" in settings 10 times)
+3. Allow ADB access when prompted. Optionally allow remote adb access in developer options.
+4. Run `adb devices` on the Raspi, and make sure only one device is shown
+5. Create and run a card on Magic Cards. Make sure to select "Always open links in Netflix" when prompted on the phone.
+
 ### Netflix Action Configuration
 
 ```json
@@ -277,6 +291,8 @@ When run, your script will receive all of the properties of your card as environ
 }
 ```
 Although not needed when using a USB connection, by providing the `adb_connect` key Magic Cards will try to `adb connect` to your android phone before trying to remote control it. Make sure your phone is connected and will not sleep, etc. (I actually have to restart the phone's wifi every hour or so.)
+
+### Netflix Action URI
 
 The URI for netflix has to be an URL that auto-opens into the netflix app on Android. Preferably in the format `https://www.netflix.com/title/1234567`
 
