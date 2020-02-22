@@ -10,7 +10,7 @@
     "dev-client": "cd client && yarn start",
     "dev-server": "cd server && nodemon server.js",
     "dev-stack": "concurrently --kill-others-on-fail \"yarn dev-server\" \"yarn dev-client\"",
-    "scanner": "cd scanner && yarn start",
+    "scanner": "cd scanner && ../.virtualenv/bin/python scanner.py",
     "server": "cd server && yarn start",
     "stack": "concurrently --kill-others-on-fail \"yarn server\" \"yarn scanner\""
   },
