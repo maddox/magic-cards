@@ -1,4 +1,4 @@
-FROM resin/raspberry-pi-alpine-node:12
+FROM balenalib/raspberry-pi-alpine-node:12
 
 RUN npm install yarn -g
 RUN npm install concurrently -g
