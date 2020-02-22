@@ -10,6 +10,7 @@ Combined with those, and your configured actions, you can tell your cards exactl
 * [Home Assistant](#home-assistant)
 * [Channels](#channels)
 * [Scripts](#scripts)
+* [Netflix](#netflix)
 
 ## Background
 
@@ -270,14 +271,14 @@ When run, your script will receive all of the properties of your card as environ
 
 ## Netflix
 
-For cassting Netflix, you'll need
+For casting Netflix, you'll need
 * An Android phone (preferably unused) with Netflix installed
 * adb, install by running `sudo apt-get install android-tools-adb`
 
 First time setup
 
 1. Connect your phone to the Raspi through USB.
-2. Enable Developer options (Tap "build number" in settings 10 times)
+2. Enable Developer options (Repeatedly tap "build number" in settings -> About phone)
 3. Allow ADB access when prompted. Optionally allow remote adb access in developer options.
 4. Run `adb devices` on the Raspi, and make sure only one device is shown
 5. Create and run a card on Magic Cards. Make sure to select "Always open links in Netflix" when prompted on the phone.
