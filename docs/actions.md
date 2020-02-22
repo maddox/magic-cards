@@ -267,3 +267,18 @@ Configuring a custom script action is as simple as providing the name of the fil
 All custom scripts need to be placed in the `/config` directory.
 
 When run, your script will receive all of the properties of your card as environment variables. You can use them like `$CARD_TITLE`, `$CARD_URI`, etc.
+
+### Netflix Action Configuration
+
+```json
+{
+    "type": "chromecast-netflix",
+    "adb_connect": "192.168.100.13",
+}
+```
+Although not needed when using a USB connection, by providing the `adb_connect` key Magic Cards will try to `adb connect` to your android phone before trying to remote control it. Make sure your phone is connected and will not sleep, etc. (I actually have to restart the phone's wifi every hour or so.)
+
+The URI for netflix has to be an URL that auto-opens into the netflix app on Android. Preferably in the format `https://www.netflix.com/title/1234567`
+
+
+
