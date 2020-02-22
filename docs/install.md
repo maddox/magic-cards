@@ -221,7 +221,9 @@ This is the main configuration file. You'll need to edit a few things. Here's an
   "spotify": {
     "clientID": "XXX",
     "clientSecret": "XXX"
-  }
+  },
+  "dlnaserver_ip": "192.168.100.20:8200",
+  "chromecast_ip": "192.168.100.8"
 }
 ```
 
