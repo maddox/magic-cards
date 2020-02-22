@@ -67,24 +67,19 @@ Magic Cards comes with an example actions configuration in `/config/actions.exam
   "Netflix": {
     "type": "chromecast-netflix",
     "adb_connect": "192.168.100.13",
-    "chromecast_ip": "192.168.100.8"
   },
   "Media URL": {
     "type": "chromecast-mediaurl",
-    "chromecast_ip": "192.168.100.8"
   },
   "DLNA Media": {
     "type": "chromecast-dlna",
-    "chromecast_ip": "192.168.100.8",
     "dlnaserver_ip": "192.168.100.20:8200"
   },
   "Youtube": {
     "type": "chromecast-youtube",
-    "chromecast_ip": "192.168.100.8"
   },
   "YLE Areena": {
-    "type": "chromecast-areena",
-    "chromecast_ip": "192.168.100.8",
+    "type": "chromecast-yleareena",
     "areena_key": ""
   }
 }
