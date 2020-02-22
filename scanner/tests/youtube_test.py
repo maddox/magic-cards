@@ -12,4 +12,10 @@ def test_youtube_action(card, actions, monkeypatch, mocker):
     processor = YoutubeAction(card, action, chromecast=MockChromecast(None))
     processor.process()
 
-    mock_youtube.play_video.assert_called_with("id1")
+    mock_youtube.play_video.assert_called_with("id1", playlist_id=None)
+
+    card["uri"] = "id1:playlist1"
+    processor = YoutubeAction(card, action, chromecast=MockChromecast(None))
+    processor.process()
+
+    mock_youtube.play_video.assert_called_with("id1", playlist_id="playlist1")
