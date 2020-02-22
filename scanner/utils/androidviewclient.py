@@ -41,8 +41,15 @@ class AndroidViewBase:
         self.connect_ip = connect_ip
 
     def main(self, *args, **kwargs):
+        started = subprocess.check_output(["adb", "devices"]).decode('utf8')
+        print(started)
+        if 'daemon not running' in started:
+            sleep(5)
         if self.connect_ip:
-            subprocess.check_call(["adb", "connect", self.connect_ip])
+            connect_stdout = subprocess.check_output(["adb", "connect", self.connect_ip]).decode('utf8')
+            print(connect_stdout)
+            if 'already connected' not in connect_stdout:
+                sleep(2)
 
         kwargs1 = {"verbose": False, "ignoresecuredevice": False, "ignoreversioncheck": False}
         device, serialno = ViewClient.connectToDeviceOrExit(**kwargs1)

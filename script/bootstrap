@@ -18,7 +18,3 @@ cd ..
 cd client
 yarn
 
-cd ..
-
-cd scanner
-yarn
