@@ -65,11 +65,14 @@ def handle_code(code):
 
 if __name__ == "__main__":
     import argparse
+    import sys
 
     parser = argparse.ArgumentParser(description="Scanner")
     parser.add_argument("--code", help="Code to input, disable scanner", required=False)
 
     args = vars(parser.parse_args())
+    # Clear args for any extra checks (There is one in android/viewclient.py", line 2796)
+    sys.argv = [sys.argv[0]]
 
     if args.get('code', ''):
         handle_code(args['code'])

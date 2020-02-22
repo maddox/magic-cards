@@ -41,6 +41,15 @@ class Chromecast():
         else:
             raise NotImplementedError()
 
+    @property
+    def running_app(self):
+        if self.cast.app_id == NETFLIX_APP_ID:
+            return 'netflix'
+        elif self.cast.app_id == AREENA_APP_ID:
+            return 'yleareena'
+        else:
+            return self.cast.app_id
+
     def play_media(self, url, content_type='video/mp4', **kwargs):
         """
         kwargs can consist of:
@@ -97,6 +106,10 @@ class MockChromecast(Chromecast):
             print("MockChromecast: start_app {}".format(app))
         else:
             raise NotImplementedError()
+
+    @property
+    def running_app(self):
+        return ''
 
     def play_media(self, url, content_type='video/mp4', **kwargs):
         print("MockChromecast: play_media {}".format(url))
