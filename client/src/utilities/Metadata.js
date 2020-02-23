@@ -109,9 +109,21 @@ export default class Metadata {
   }
 
   static async fromNetflix(sourceURL) {
-    let uri
-    uri = 'https://' + sourceURL.host + sourceURL.pathname.replace('/Kids', '')
-    return {type: 'movie', uri: uri}
+    const uri = 'https://' + sourceURL.host + sourceURL.pathname.replace('/Kids', '')
+    const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : ''
+    const metadataURL = `${baseURL}/metadata/netflix?url=${uri}`
+    const metadata = await fetch(metadataURL)
+      .then(results => {
+        return results.json()
+      })
+      .then(data => {
+        return {
+          artURL: data.hero_image_url,
+          title: data.title,
+          subtitle: data.year,
+        }
+      })
+    return Object.assign(metadata, {type: 'movie', uri: uri})
   }
 
   static async fromDLNA() {
