@@ -158,6 +158,33 @@ app.get('/metadata/yleareena', (req, res) => {
     .catch(errorHandler)
 })
 
+app.get('/metadata/youtube', (req, res) => {
+  const url = req.query.url
+
+  const responder = data => {
+    console.log(data)
+    res.send(data)
+  }
+  const errorHandler = error => {
+    console.error(error)
+    res.send({message: 'error'})
+  }
+
+  const fetchData = async () => {
+    const result = await axios.get(url)
+    return cheerio.load(result.data)
+  }
+  fetchData()
+    .then($ => {
+      return {
+        image: $('head > meta[property="og:image"]').attr('content'),
+        title: $('head > meta[property="og:title"]').attr('content'),
+      }
+    })
+    .then(responder)
+    .catch(errorHandler)
+})
+
 app.get('/dlna-media', (req, res) => {
   const scriptPath = dlnaPath + ' --dlnaserver_ip ' + config.dlnaserver_ip
   console.log(`Running ${scriptPath}`)

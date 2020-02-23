@@ -12,6 +12,8 @@ export default class Metadata {
       return Metadata.fromNetflix(sourceURL)
     } else if (sourceURL.host === 'areena.yle.fi') {
       return Metadata.fromYLEAreena(sourceURL)
+    } else if (sourceURL.host === 'www.youtube.com' || sourceURL.host === 'youtu.be') {
+      return Metadata.fromYoutube(sourceURL)
     }
   }
 
@@ -139,6 +141,23 @@ export default class Metadata {
       .then(data => {
         return {
           artURL: data.cover_image,
+          title: data.title,
+        }
+      })
+    return metadata
+  }
+
+  static async fromYoutube(sourceURL) {
+    const url = 'https://' + sourceURL.host + sourceURL.pathname + sourceURL.search
+    const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : ''
+    const metadataURL = `${baseURL}/metadata/youtube?url=${url}`
+    const metadata = await fetch(metadataURL)
+      .then(results => {
+        return results.json()
+      })
+      .then(data => {
+        return {
+          artURL: data.image,
           title: data.title,
         }
       })
