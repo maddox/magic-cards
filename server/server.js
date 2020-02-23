@@ -120,9 +120,38 @@ app.get('/metadata/netflix', (req, res) => {
       return {
         hero_image_url: $('.hero-image')
           .attr('style')
-          .match(/background-image:url\("(.*)\"/)[1],
+          .match(/background-image: ?url\("(.*)\"/)[1],
         title: $('.title-title').text(),
         year: $('.title-info-metadata-item.item-year').text(),
+      }
+    })
+    .then(responder)
+    .catch(errorHandler)
+})
+
+app.get('/metadata/yleareena', (req, res) => {
+  const url = req.query.url
+
+  const responder = data => {
+    console.log(data)
+    res.send(data)
+  }
+  const errorHandler = error => {
+    console.error(error)
+    res.send({message: 'error'})
+  }
+
+  const fetchData = async () => {
+    const result = await axios.get(url)
+    return cheerio.load(result.data)
+  }
+  fetchData()
+    .then($ => {
+      return {
+        cover_image: $('.cover-image .holder')
+          .attr('style')
+          .match(/background-image: ?url\('(.*)'/)[1],
+        title: $('.cover-image h1').text(),
       }
     })
     .then(responder)

@@ -10,6 +10,8 @@ export default class Metadata {
       return Metadata.fromSpotify(sourceURL)
     } else if (sourceURL.host === 'www.netflix.com') {
       return Metadata.fromNetflix(sourceURL)
+    } else if (sourceURL.host === 'areena.yle.fi') {
+      return Metadata.fromYLEAreena(sourceURL)
     }
   }
 
@@ -124,6 +126,23 @@ export default class Metadata {
         }
       })
     return Object.assign(metadata, {type: 'movie', uri: uri})
+  }
+
+  static async fromYLEAreena(sourceURL) {
+    const url = 'https://' + sourceURL.host + sourceURL.pathname
+    const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : ''
+    const metadataURL = `${baseURL}/metadata/yleareena?url=${url}`
+    const metadata = await fetch(metadataURL)
+      .then(results => {
+        return results.json()
+      })
+      .then(data => {
+        return {
+          artURL: data.cover_image,
+          title: data.title,
+        }
+      })
+    return metadata
   }
 
   static async fromDLNA() {
