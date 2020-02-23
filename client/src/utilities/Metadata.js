@@ -1,5 +1,7 @@
 import titleCase from 'title-case'
 
+const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : ''
+
 export default class Metadata {
   static async fetchMetadata(url) {
     const sourceURL = new URL(url)
@@ -20,7 +22,6 @@ export default class Metadata {
   static async fromSpotify(sourceURL) {
     let type, title, subtitle, uri, artURL
 
-    const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : ''
     const pathParts = sourceURL.pathname.split('/')
 
     const spotifyID = pathParts[pathParts.length - 1]
@@ -114,53 +115,38 @@ export default class Metadata {
 
   static async fromNetflix(sourceURL) {
     const uri = 'https://' + sourceURL.host + sourceURL.pathname.replace('/Kids', '')
-    const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : ''
     const metadataURL = `${baseURL}/metadata/netflix?url=${uri}`
     const metadata = await fetch(metadataURL)
-      .then(results => {
-        return results.json()
-      })
-      .then(data => {
-        return {
-          artURL: data.hero_image_url,
-          title: data.title,
-          subtitle: data.year,
-        }
-      })
+      .then(results => results.json())
+      .then(data => ({
+        artURL: data.hero_image_url,
+        title: data.title,
+        subtitle: data.year,
+      }))
     return Object.assign(metadata, {type: 'movie', uri: uri})
   }
 
   static async fromYLEAreena(sourceURL) {
     const url = 'https://' + sourceURL.host + sourceURL.pathname
-    const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : ''
     const metadataURL = `${baseURL}/metadata/yleareena?url=${url}`
     const metadata = await fetch(metadataURL)
-      .then(results => {
-        return results.json()
-      })
-      .then(data => {
-        return {
-          artURL: data.cover_image,
-          title: data.title,
-        }
-      })
+      .then(results => results.json())
+      .then(data => ({
+        artURL: data.cover_image,
+        title: data.title,
+      }))
     return metadata
   }
 
   static async fromYoutube(sourceURL) {
     const url = 'https://' + sourceURL.host + sourceURL.pathname + sourceURL.search
-    const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : ''
     const metadataURL = `${baseURL}/metadata/youtube?url=${url}`
     const metadata = await fetch(metadataURL)
-      .then(results => {
-        return results.json()
-      })
-      .then(data => {
-        return {
-          artURL: data.image,
-          title: data.title,
-        }
-      })
+      .then(results => results.json())
+      .then(data => ({
+        artURL: data.image,
+        title: data.title,
+      }))
     return metadata
   }
 

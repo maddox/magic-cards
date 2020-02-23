@@ -99,9 +99,7 @@ app.get('/metadata/spotify', (req, res) => {
     })
 })
 
-app.get('/metadata/netflix', (req, res) => {
-  const url = req.query.url
-
+const parseWebpage = async (url, res, parser) => {
   const responder = data => {
     console.log(data)
     res.send(data)
@@ -111,78 +109,47 @@ app.get('/metadata/netflix', (req, res) => {
     res.send({message: 'error'})
   }
 
-  const fetchData = async () => {
-    const result = await axios.get(url)
-    return cheerio.load(result.data)
-  }
-  fetchData()
-    .then($ => {
-      return {
-        hero_image_url: $('.hero-image')
-          .attr('style')
-          .match(/background-image: ?url\("(.*)\"/)[1],
-        title: $('.title-title').text(),
-        year: $('.title-info-metadata-item.item-year').text(),
-      }
-    })
+  return axios
+    .get(url)
+    .then(result => cheerio.load(result.data))
+    .then(parser)
     .then(responder)
     .catch(errorHandler)
+}
+
+app.get('/metadata/netflix', (req, res) => {
+  const url = req.query.url
+  parseWebpage(url, res, $ => {
+    return {
+      hero_image_url: $('.hero-image')
+        .attr('style')
+        .match(/background-image: ?url\("(.*)\"/)[1],
+      title: $('.title-title').text(),
+      year: $('.title-info-metadata-item.item-year').text(),
+    }
+  })
 })
 
 app.get('/metadata/yleareena', (req, res) => {
   const url = req.query.url
-
-  const responder = data => {
-    console.log(data)
-    res.send(data)
-  }
-  const errorHandler = error => {
-    console.error(error)
-    res.send({message: 'error'})
-  }
-
-  const fetchData = async () => {
-    const result = await axios.get(url)
-    return cheerio.load(result.data)
-  }
-  fetchData()
-    .then($ => {
-      return {
-        cover_image: $('.cover-image .holder')
-          .attr('style')
-          .match(/background-image: ?url\('(.*)'/)[1],
-        title: $('.cover-image h1').text(),
-      }
-    })
-    .then(responder)
-    .catch(errorHandler)
+  parseWebpage(url, res, $ => {
+    return {
+      cover_image: $('.cover-image .holder')
+        .attr('style')
+        .match(/background-image: ?url\('(.*)'/)[1],
+      title: $('.cover-image h1').text(),
+    }
+  })
 })
 
 app.get('/metadata/youtube', (req, res) => {
   const url = req.query.url
-
-  const responder = data => {
-    console.log(data)
-    res.send(data)
-  }
-  const errorHandler = error => {
-    console.error(error)
-    res.send({message: 'error'})
-  }
-
-  const fetchData = async () => {
-    const result = await axios.get(url)
-    return cheerio.load(result.data)
-  }
-  fetchData()
-    .then($ => {
-      return {
-        image: $('head > meta[property="og:image"]').attr('content'),
-        title: $('head > meta[property="og:title"]').attr('content'),
-      }
-    })
-    .then(responder)
-    .catch(errorHandler)
+  parseWebpage(url, res, $ => {
+    return {
+      image: $('head > meta[property="og:image"]').attr('content'),
+      title: $('head > meta[property="og:title"]').attr('content'),
+    }
+  })
 })
 
 app.get('/dlna-media', (req, res) => {
