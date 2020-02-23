@@ -35,6 +35,10 @@ def loop_until(func, seconds=15, nofail=False):
         firstrun = False
 
 
+class AdbException(Exception):
+    pass
+
+
 class AndroidViewBase:
     def __init__(self, chromecast_name, connect_ip=None):
         self.chromecast_name = chromecast_name
@@ -46,10 +50,15 @@ class AndroidViewBase:
         if 'daemon not running' in started:
             sleep(5)
         if self.connect_ip:
+            print('Connecting to adb device {}...'.format(self.connect_ip))
             connect_stdout = subprocess.check_output(["adb", "connect", self.connect_ip]).decode('utf8')
             print(connect_stdout)
             if 'already connected' not in connect_stdout:
                 sleep(2)
+
+        devices_out = subprocess.check_output(["adb", "devices"]).decode('utf8')
+        if devices_out.split('\n')[1].strip() == '':
+            raise AdbException('No devices connected')
 
         kwargs1 = {"verbose": False, "ignoresecuredevice": False, "ignoreversioncheck": False}
         device, serialno = ViewClient.connectToDeviceOrExit(**kwargs1)

@@ -17,6 +17,7 @@ with open(CURRENT_DIR + "/../config/config.json", "r") as f:
     config = json.load(f)
 
 if "chromecast_ip" in config:
+    print('Connecting chromecast at {}...'.format(config["chromecast_ip"]))
     if config["chromecast_ip"] == "mock_chromecast":
         chromecast = MockChromecast(config["chromecast_ip"])
     else:

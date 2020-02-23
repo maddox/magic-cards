@@ -3,6 +3,8 @@ const express = require('express')
 const path = require('path')
 const ejs = require('ejs')
 const SpotifyWebApi = require('spotify-web-api-node')
+const axios = require('axios')
+const cheerio = require('cheerio')
 
 const config = require(__dirname + '/../config/config.json')
 const dlnaPath = __dirname + '/../.virtualenv/bin/python ' + __dirname + '/../scanner/utils/dlna.py'
@@ -95,6 +97,59 @@ app.get('/metadata/spotify', (req, res) => {
       console.log('Something went wrong when retrieving an access token', error)
       res.send('error')
     })
+})
+
+const parseWebpage = async (url, res, parser) => {
+  const responder = data => {
+    console.log(data)
+    res.send(data)
+  }
+  const errorHandler = error => {
+    console.error(error)
+    res.send({message: 'error'})
+  }
+
+  return axios
+    .get(url)
+    .then(result => cheerio.load(result.data))
+    .then(parser)
+    .then(responder)
+    .catch(errorHandler)
+}
+
+app.get('/metadata/netflix', (req, res) => {
+  const url = req.query.url
+  parseWebpage(url, res, $ => {
+    return {
+      hero_image_url: $('.hero-image')
+        .attr('style')
+        .match(/background-image: ?url\("(.*)\"/)[1],
+      title: $('.title-title').text(),
+      year: $('.title-info-metadata-item.item-year').text(),
+    }
+  })
+})
+
+app.get('/metadata/yleareena', (req, res) => {
+  const url = req.query.url
+  parseWebpage(url, res, $ => {
+    return {
+      cover_image: $('.cover-image .holder')
+        .attr('style')
+        .match(/background-image: ?url\('(.*)'/)[1],
+      title: $('.cover-image h1').text(),
+    }
+  })
+})
+
+app.get('/metadata/youtube', (req, res) => {
+  const url = req.query.url
+  parseWebpage(url, res, $ => {
+    return {
+      image: $('head > meta[property="og:image"]').attr('content'),
+      title: $('head > meta[property="og:title"]').attr('content'),
+    }
+  })
 })
 
 app.get('/dlna-media', (req, res) => {

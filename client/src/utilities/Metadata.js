@@ -1,5 +1,7 @@
 import titleCase from 'title-case'
 
+const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : ''
+
 export default class Metadata {
   static async fetchMetadata(url) {
     const sourceURL = new URL(url)
@@ -10,13 +12,16 @@ export default class Metadata {
       return Metadata.fromSpotify(sourceURL)
     } else if (sourceURL.host === 'www.netflix.com') {
       return Metadata.fromNetflix(sourceURL)
+    } else if (sourceURL.host === 'areena.yle.fi') {
+      return Metadata.fromYLEAreena(sourceURL)
+    } else if (sourceURL.host === 'www.youtube.com' || sourceURL.host === 'youtu.be') {
+      return Metadata.fromYoutube(sourceURL)
     }
   }
 
   static async fromSpotify(sourceURL) {
     let type, title, subtitle, uri, artURL
 
-    const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : ''
     const pathParts = sourceURL.pathname.split('/')
 
     const spotifyID = pathParts[pathParts.length - 1]
@@ -109,9 +114,40 @@ export default class Metadata {
   }
 
   static async fromNetflix(sourceURL) {
-    let uri
-    uri = 'https://' + sourceURL.host + sourceURL.pathname.replace('/Kids', '')
-    return {type: 'movie', uri: uri}
+    const uri = 'https://' + sourceURL.host + sourceURL.pathname.replace('/Kids', '')
+    const metadataURL = `${baseURL}/metadata/netflix?url=${uri}`
+    const metadata = await fetch(metadataURL)
+      .then(results => results.json())
+      .then(data => ({
+        artURL: data.hero_image_url,
+        title: data.title,
+        subtitle: data.year,
+      }))
+    return Object.assign(metadata, {type: 'movie', uri: uri})
+  }
+
+  static async fromYLEAreena(sourceURL) {
+    const url = 'https://' + sourceURL.host + sourceURL.pathname
+    const metadataURL = `${baseURL}/metadata/yleareena?url=${url}`
+    const metadata = await fetch(metadataURL)
+      .then(results => results.json())
+      .then(data => ({
+        artURL: data.cover_image,
+        title: data.title,
+      }))
+    return metadata
+  }
+
+  static async fromYoutube(sourceURL) {
+    const url = 'https://' + sourceURL.host + sourceURL.pathname + sourceURL.search
+    const metadataURL = `${baseURL}/metadata/youtube?url=${url}`
+    const metadata = await fetch(metadataURL)
+      .then(results => results.json())
+      .then(data => ({
+        artURL: data.image,
+        title: data.title,
+      }))
+    return metadata
   }
 
   static async fromDLNA() {
