@@ -18,5 +18,6 @@ mkdir -p server/public
 cp -a client/build/. server/public/
 
 python3 -m venv .virtualenv
+.virtualenv/bin/python -m pip install cython
 .virtualenv/bin/python -m pip install -r pip-requirements.txt
 export PATH=.virtualenv/bin:$PATH

@@ -1,5 +1,5 @@
 pychromecast
-https://github.com/dtmilano/AndroidViewClient/archive/py2to3.zip
+androidviewclient==20.0.0b3
 upnpclient
 yle-dl
 evdev
