@@ -115,13 +115,15 @@ This is also usefull to check the ID of a new card.
 
 ### Update Container
 
-When a new version of the image is available at the [docker registry](https://hub.docker.com/r/jonmaddox/magic-cards), you'll need to update the image and restart the container.
+When a new version of the image is available at the [docker registry](https://hub.docker.com/r/jonmaddox/magic-cards), you'll need to update the image and recreate the container.
 
 ```bash
-docker stop magic-cards
 docker pull jonmaddox/magic-cards
-docker start magic-cards
+docker stop magic-cards
+docker rm magic-cards
 ```
+
+Now run the container with the `docker run` command you've previously used. Thanks to the `-v` command to bind a volume to the local config folder, all settings are preserved.
 
 ## Standalone Install
 
