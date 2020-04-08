@@ -9,6 +9,9 @@ yarn-error.log
 .env.*
 .s3cfg
 .jshintrc
+*.pyc
+.virtualenv
+
 
 config/cards.json
 config/actions.json

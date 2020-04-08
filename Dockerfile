@@ -1,6 +1,13 @@
-FROM resin/raspberry-pi-alpine-node:9.11.2
+FROM balenalib/raspberry-pi-alpine-node:12-run
 
-RUN npm install yarn -g
+# Install python
+RUN apk add --no-cache python python-dev python3 python3-dev \
+    linux-headers build-base bash git ca-certificates && \
+    python3 -m ensurepip && \
+    pip3 install --upgrade pip setuptools && \
+    if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
+    rm -r /root/.cache
+
 RUN npm install concurrently -g
 
 # Create app directory

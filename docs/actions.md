@@ -10,6 +10,11 @@ Combined with those, and your configured actions, you can tell your cards exactl
 * [Home Assistant](#home-assistant)
 * [Channels](#channels)
 * [Scripts](#scripts)
+* [Netflix](#netflix)
+* [Media URL](#media-url)
+* [DLNA Media](#dlna-media)
+* [Youtube](#youtube)
+* [YLE Areena](#yle-areena)
 
 ## Background
 
@@ -63,6 +68,24 @@ Magic Cards comes with an example actions configuration in `/config/actions.exam
   "My Script": {
     "type": "script",
     "filename": "test.sh"
+  },
+  "Netflix": {
+    "type": "chromecast-netflix",
+    "adb_connect": "192.168.100.13",
+  },
+  "Media URL": {
+    "type": "chromecast-mediaurl",
+  },
+  "DLNA Media": {
+    "type": "chromecast-dlna",
+    "dlnaserver_ip": "192.168.100.20:8200"
+  },
+  "Youtube": {
+    "type": "chromecast-youtube",
+  },
+  "YLE Areena": {
+    "type": "chromecast-yleareena",
+    "areena_key": ""
   }
 }
 ```
@@ -249,3 +272,81 @@ Configuring a custom script action is as simple as providing the name of the fil
 All custom scripts need to be placed in the `/config` directory.
 
 When run, your script will receive all of the properties of your card as environment variables. You can use them like `$CARD_TITLE`, `$CARD_URI`, etc.
+
+## Netflix
+
+For casting Netflix, you'll need
+* An Android phone (preferably unused) with Netflix installed
+* adb, install by running `sudo apt-get install android-tools-adb`
+
+First time setup
+
+1. Connect your phone to the Raspi through USB.
+2. Enable Developer options (Repeatedly tap "build number" in settings -> About phone)
+3. Allow ADB access when prompted. Optionally allow remote adb access in developer options.
+4. Run `adb devices` on the Raspi, and make sure only one device is shown
+5. Create and run a card on Magic Cards. Make sure to select "Always open links in Netflix" when prompted on the phone.
+
+### Netflix Action Configuration
+
+```json
+{
+    "type": "chromecast-netflix",
+    "adb_connect": "192.168.100.13",
+}
+```
+Although not needed when using a USB connection, by providing the `adb_connect` key Magic Cards will try to `adb connect` to your android phone before trying to remote control it. Make sure your phone is connected and will not sleep, etc. (I actually have to restart the phone's wifi every hour or so.)
+
+### Netflix Action URI
+
+The URI for netflix has to be an URL that auto-opens into the netflix app on Android. Preferably in the format `https://www.netflix.com/title/1234567`
+
+## Media URL
+
+This action will allow you to cast any media URLs to the chromecast.
+
+### Media URL Action URI
+
+The media should be of type `video/mp4`. Example: `http://mirrorblender.top-ix.org/peach/bigbuckbunny_movies/big_buck_bunny_1080p_surround.avi`
+
+## DLNA Media
+
+Cast media from a DLNA server. This differs from Media URL action in the way that DLNA URLs often change, so using direct links breaks often.
+
+### DLNA Media Action Configuration
+
+```json
+{
+    "type": "chromecast-dlna",
+    "dlnaserver_ip": "192.168.100.20:8200"
+}
+```
+dlnaserver_ip: Provide the IP and port for your DLNA server. Authentication is not currently supported.
+
+### DLNA Media Action URI
+
+The URI is formatted as follows: `random:Title` with a regular expression `Title` and an optional "random" flag, which will randomly pick one of the results. (As such `:Title` is also correct, and will pick the "first" result.)
+
+
+## Youtube
+
+### Youtube Action URI
+
+The URI is formatted as follows: `id:playlist_id` with an optional playlist id after the colon. `id` is also correct.
+
+
+## Yle Areena
+
+### Yle Areena Action Configuration
+
+```json
+{
+    "type": "chromecast-yleareena",
+    "areena_key": "app_id=&app_key="
+}
+```
+areena_key: Get an areena api key from here: https://developer.yle.fi/
+
+### Yle Areena Action URI
+
+The URI is formatted as follows: `random:series_id` or `program_id`. This allows you to play random episodes of a series.

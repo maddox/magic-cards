@@ -160,7 +160,7 @@ You'll need to have node and yarn installed on your Pi before you start setting 
 If you don't have Node or yarn installed, here's some simple instructions. Using [this repo](https://github.com/sdesalas/node-pi-zero), you can get node installed with a single command:
 
 ```bash
-wget -O - https://raw.githubusercontent.com/sdesalas/node-pi-zero/master/install-node-v9.11.2.sh | bash
+wget -O - https://raw.githubusercontent.com/sdesalas/node-pi-zero/master/install-node-v11.5.0.sh | bash
 ```
 
 After you have node installed, edit your `~/.profile` file to add:
@@ -223,7 +223,9 @@ This is the main configuration file. You'll need to edit a few things. Here's an
   "spotify": {
     "clientID": "XXX",
     "clientSecret": "XXX"
-  }
+  },
+  "dlnaserver_ip": "192.168.100.20:8200",
+  "chromecast_ip": "192.168.100.8"
 }
 ```
 

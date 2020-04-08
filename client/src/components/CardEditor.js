@@ -24,6 +24,7 @@ class CardEditor extends React.Component {
       title: card.title,
       subtitle: card.subtitle,
       uri: card.uri,
+      dlnaOptions: [],
     }
   }
 
@@ -53,7 +54,7 @@ class CardEditor extends React.Component {
     const url = event.target.value
 
     Metadata.fetchMetadata(url).then(metadata => {
-      if (action && action.type !== 'sonos') {
+      if (action && action.type !== 'sonos' && action.type !== 'chromecast-netflix') {
         delete metadata.uri
       }
       this.setState(metadata)
@@ -117,6 +118,11 @@ class CardEditor extends React.Component {
   }
 
   handleActionChange = (event, data) => {
+    Metadata.fromDLNA().then(data => {
+      this.setState({
+        dlnaOptions: data,
+      })
+    })
     this.setState({
       action: data.value,
     })
@@ -132,6 +138,23 @@ class CardEditor extends React.Component {
     if (event.which === 13) {
       event.preventDefault()
     }
+  }
+
+  getDLNAOptions = () => {
+    const ret = Object.entries(this.state.dlnaOptions || {}).map(function(option, i) {
+      return {
+        key: option[0],
+        value: option[0],
+        text: option[0],
+      }
+    })
+    console.log(ret)
+    return ret
+  }
+
+  handleDLNAChange = (event, {value}) => {
+    event.preventDefault()
+    this.setState({title: value, uri: ':' + value, type: 'movie'})
   }
 
   render() {
@@ -156,10 +179,20 @@ class CardEditor extends React.Component {
 
     const submitButtonTitle = this.props.card.id ? 'Save Card' : 'Create Card'
 
-    return (
-      <div className="CardEditor">
-        <Card card={card} />
-
+    let quickAddForm
+    if (card.action === 'DLNA Media') {
+      quickAddForm = (
+        <Form>
+          <Form.Select
+            label="Add content from DLNA server"
+            search
+            options={this.getDLNAOptions()}
+            onChange={this.handleDLNAChange}
+          />
+        </Form>
+      )
+    } else {
+      quickAddForm = (
         <Form>
           <Form.Input
             type="search"
@@ -169,6 +202,14 @@ class CardEditor extends React.Component {
             onChange={this.handleUrl}
           />
         </Form>
+      )
+    }
+
+    return (
+      <div className="CardEditor">
+        <Card card={card} />
+
+        {quickAddForm}
 
         <h1>Card Data</h1>
 

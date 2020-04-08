@@ -16,7 +16,7 @@ class CardManager {
   }
 
   saveCards() {
-    fs.writeFile(this.cardDataPath, JSON.stringify(this.cards, null, '  '), 'utf8')
+    fs.writeFileSync(this.cardDataPath, JSON.stringify(this.cards, null, '  '), 'utf8')
   }
 
   findCard(id) {

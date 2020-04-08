@@ -64,7 +64,9 @@
     grid-template-rows: auto 1fr;
 
     .coverArt{
-      width: 100%;
+      object-fit: cover;
+      width: 168px;
+      height: 168px;
     }
 
     .metadata{
